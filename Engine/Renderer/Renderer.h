@@ -8,9 +8,15 @@
 
 #include "../Renderer/Texture.h"
 
+#include <glad/glad.h>
+
+#include <SDL.h> 
+
 struct SDL_Renderer;
 
 struct SDL_Window;
+
+
 
 namespace neu {
 
@@ -30,7 +36,7 @@ namespace neu {
 
 		void Shutdown();
 
-		void CreateWindow(const char* name, int width, int height);
+		void CreateWindow(const char* name, int width, int height, bool fullscreen);
 
 		void BeginFrame();
 
@@ -77,6 +83,8 @@ namespace neu {
 		SDL_Renderer* m_renderer = nullptr;
 
 		SDL_Window* m_window = nullptr;
+
+		SDL_GLContext m_context;
 
 		Color m_clearColor{ 0,0,0,255 };
 

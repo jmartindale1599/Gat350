@@ -151,6 +151,9 @@
     <ClCompile Include="Components\CameraComponent.cpp">
       <Filter>Sources\Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\ThirdParty\glad\glad\src\glad.c">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Memory.h">
