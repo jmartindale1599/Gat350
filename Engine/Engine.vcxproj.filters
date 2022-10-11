@@ -154,6 +154,9 @@
     <ClCompile Include="..\ThirdParty\glad\glad\src\glad.c">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\Shader.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Memory.h">
@@ -308,6 +311,9 @@
     </ClInclude>
     <ClInclude Include="Components\CameraComponent.h">
       <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Shader.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

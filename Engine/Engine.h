@@ -28,6 +28,8 @@
 
 #include "Renderer/Text.h"
 
+#include "Renderer/Shader.h"
+
 #include "Model.h"
 
 #include "Input/InputSystem.h"

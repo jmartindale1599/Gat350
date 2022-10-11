@@ -6,19 +6,40 @@ float points[] = {
 
   -0.5f, -0.5f,  0.0f,
    
-  0.0f,  0.5f,  0.0f,
+  -0.5f,  0.0f,  0.0f,
   
-  0.5f, -0.5f,  0.0f
+  0.0f, -0.5f,  0.5f,
+
+
+  0.0f, -0.5f, 0.5f,
+
+  0.0f, 0.0f, -0.5f,
+
+  -0.5f, 0.0f, 0.0f,
 
 };
 
-const char* vertex_shader = "#version 430 core\n" "in vec3 position;" "void main() {" "  gl_Position = vec4(position, 0.4);" "}";
+neu::Vector3 colors[] = { //change it to glm namespace
 
-const char* fragment_shader = "#version 430 core\n" "out vec4 color;" "void main() {" "  color = vec4(0.5, 0.0, 0.5, 1.0);" "}";
+	{0, 0, 1}, // rgb
+	
+	{1, 0, 1},
+	
+	{0, 1, 1},
+	
+	{1, 0, 0},
+
+	{0, 1, 0},
+
+	{1, 1, 0}
+
+};
 
 int main(int argc, char** argv){
 
 	kronk::innitMemory();
+
+	neu::SetFilePath("../Assets");
 
 	neu::Engine::Instance().Initialize();
 	
@@ -28,13 +49,21 @@ int main(int argc, char** argv){
 
 	// create vertex buffer
 
-	GLuint vbo = 0;
+	GLuint pvbo = 0;
 	
-	glGenBuffers(1, &vbo);
+	glGenBuffers(1, &pvbo);
 	
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, pvbo);
 	
-	glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(float), points, GL_STATIC_DRAW);
+
+	GLuint cvbo = 0;
+
+	glGenBuffers(1, &cvbo);
+
+	glBindBuffer(GL_ARRAY_BUFFER, cvbo);
+
+	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(neu::Vector3), colors, GL_STATIC_DRAW);
 
 	// create vertex array
 
@@ -44,15 +73,27 @@ int main(int argc, char** argv){
 
 	glBindVertexArray(vao);
 
+
 	glEnableVertexAttribArray(0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, pvbo);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
+
+	glEnableVertexAttribArray(1);
+
+	glBindBuffer(GL_ARRAY_BUFFER, cvbo);
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
 	// create shader
 
-	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+	std::shared_ptr<neu::Shader> vs = neu::g_resources.Get<neu::Shader>("shaders/basic.vert", GL_VERTEX_SHADER);
+	
+	std::shared_ptr<neu::Shader> fs = neu::g_resources.Get<neu::Shader>("shaders/basic.frag", GL_FRAGMENT_SHADER);
+
+	/*GLuint vs = glCreateShader(GL_VERTEX_SHADER);
 	
 	glShaderSource(vs, 1, &vertex_shader, NULL);
 	
@@ -62,15 +103,15 @@ int main(int argc, char** argv){
 	
 	glShaderSource(fs, 1, &fragment_shader, NULL);
 	
-	glCompileShader(fs);
+	glCompileShader(fs);*/
 
 	// create program
 
 	GLuint program = glCreateProgram();
 	
-	glAttachShader(program, fs);
+	glAttachShader(program, fs->m_shader);
 	
-	glAttachShader(program, vs);
+	glAttachShader(program, vs->m_shader);
 	
 	glLinkProgram(program);
 
@@ -86,7 +127,7 @@ int main(int argc, char** argv){
 
 		neu::g_renderer.BeginFrame();
 
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		neu::g_renderer.EndFrame();
 	
