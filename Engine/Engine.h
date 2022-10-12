@@ -10,6 +10,8 @@
 
 #include "Core/Logger.h"
 
+#include "glm/glm.hpp"
+
 #include "Math/Random.h"
 
 #include "Math/MathUtils.h"
