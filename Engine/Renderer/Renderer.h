@@ -6,8 +6,7 @@
 
 #include "Math/3X3.h"
 
-#include "../Renderer/Texture.h"
-
+//#include "../Renderer/Texture.h"
 #include <glad/glad.h>
 
 #include <SDL.h> 
@@ -16,13 +15,13 @@ struct SDL_Renderer;
 
 struct SDL_Window;
 
-
-
 namespace neu {
 
 	struct Transform;
 
 	struct Rect;
+
+	class Texture;
 
 	class Renderer {
 

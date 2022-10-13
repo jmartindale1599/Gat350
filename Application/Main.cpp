@@ -4,18 +4,17 @@
 
 float points[] = {
 
-  -0.5f, -0.5f,  0.0f,
+  -1, -1,  0,
    
-  -0.5f,  0.0f,  0.0f,
+  -1,  0,  0,
   
-  0.0f, -0.5f,  0.0f,
+  0, -1,  0,
 
+  0, -1, 0,
 
-  0.0f, -0.5f, 0.0f,
+  0, 0, 0,
 
-  0.0f, 0.0f, 0.0f,
-
-  -0.5f, 0.0f, 0.0f,
+  -1, 0, 0
 
 };
 
@@ -35,7 +34,25 @@ glm::vec3 colors[] = { //change it to glm namespace
 
 };
 
+glm::vec2 textCoords[]{
+
+	{0,0},
+
+	{0,1},
+
+	{1,0},
+
+	{0,1},
+
+	{1,1},
+
+	{1,0}
+
+};
+
 int main(int argc, char** argv){
+
+	LOG("Application Started . . .");
 
 	kronk::innitMemory();
 
@@ -45,7 +62,11 @@ int main(int argc, char** argv){
 	
 	neu::Engine::Instance().Register();
 
+	LOG("Engine Initialized . . . ");
+
 	neu::g_renderer.CreateWindow("Neumont", 800, 600, false);
+
+	LOG("Window Initialized . . .");
 
 	// create vertex buffer
 
@@ -64,6 +85,14 @@ int main(int argc, char** argv){
 	glBindBuffer(GL_ARRAY_BUFFER, cvbo);
 
 	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec3), colors, GL_STATIC_DRAW);
+
+	GLuint tvbo = 0;
+
+	glGenBuffers(1, &tvbo);
+
+	glBindBuffer(GL_ARRAY_BUFFER, tvbo);
+
+	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec2), textCoords, GL_STATIC_DRAW);
 
 	// create vertex array
 
@@ -87,23 +116,17 @@ int main(int argc, char** argv){
 
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
+	glEnableVertexAttribArray(2);
+
+	glBindBuffer(GL_ARRAY_BUFFER, tvbo);
+
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+
 	// create shader
 
 	std::shared_ptr<neu::Shader> vs = neu::g_resources.Get<neu::Shader>("shaders/basic.vert", GL_VERTEX_SHADER);
 	
 	std::shared_ptr<neu::Shader> fs = neu::g_resources.Get<neu::Shader>("shaders/basic.frag", GL_FRAGMENT_SHADER);
-
-	/*GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-	
-	glShaderSource(vs, 1, &vertex_shader, NULL);
-	
-	glCompileShader(vs);
-	
-	GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-	
-	glShaderSource(fs, 1, &fragment_shader, NULL);
-	
-	glCompileShader(fs);*/
 
 	// create program
 
@@ -127,6 +150,13 @@ int main(int argc, char** argv){
 
 	//mx = glm::scale(glm::vec3{.7, .7, .7, .7});
 
+	//create texture
+
+	std::shared_ptr<neu::Texture> texture1 = neu::g_resources.Get<neu::Texture>("textures/box.png");
+
+	std::shared_ptr<neu::Texture> texture2 = neu::g_resources.Get<neu::Texture>("textures/llama.png");
+
+	texture1->Bind();
 
 	bool quit = false;
 

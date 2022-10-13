@@ -32,6 +32,8 @@
 
 #include "Renderer/Shader.h"
 
+#include "Renderer/Texture.h"
+
 #include "Model.h"
 
 #include "Input/InputSystem.h"

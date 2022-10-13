@@ -26,5 +26,8 @@
     <None Include="..\Build\Assets\shaders\basic.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\Build\Assets\shaders\basic.prog">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

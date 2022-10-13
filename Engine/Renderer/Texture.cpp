@@ -14,7 +14,7 @@ namespace neu{
 
         if (!m_texture) {
 
-            SDL_DestroyTexture(m_texture);
+            glDeleteTextures(1, &m_texture);
 
         }
     
@@ -51,17 +51,21 @@ namespace neu{
 
         }
 
-        m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
+        glGenTextures(1, &m_texture);
+
+        glBindTexture(m_target, m_texture);
+
+        GLenum format = (surface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
         
-        if (m_texture == nullptr) {
+        glTexImage2D(m_target, 0, format, surface->w, surface->h, 0, format, GL_UNSIGNED_BYTE, surface->pixels);
 
-            LOG(SDL_GetError());
-
-            SDL_FreeSurface(surface);
-
-            return false;
-
-        }
+        glTexParameteri(m_target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        
+        glTexParameteri(m_target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        
+        glTexParameteri(m_target, GL_TEXTURE_WRAP_S, GL_CLAMP);
+        
+        glTexParameteri(m_target, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
         SDL_FreeSurface(surface);
 
@@ -71,7 +75,7 @@ namespace neu{
 
     bool Texture::CreateFromSurface(SDL_Surface* surface, Renderer& renderer){
         
-        if (m_texture) SDL_DestroyTexture(m_texture);
+        /*if (m_texture) SDL_DestroyTexture(m_texture);
 
         m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
 
@@ -82,19 +86,19 @@ namespace neu{
                 LOG(SDL_GetError());
               
                 return false;
-            }
+            } */
 
-        return true;
+        return true; 
     
     }
 
     neu::Vector2 Texture::GetSize() const{
 
-        SDL_Point point;
+        /*SDL_Point point;
         
-        SDL_QueryTexture(m_texture, nullptr, nullptr, &point.x, &point.y);
+        SDL_QueryTexture(m_texture, nullptr, nullptr, &point.x, &point.y);*/
 
-        return Vector2{ point.x, point.y };
+        return Vector2{ 0, 0 };
 
     }
 

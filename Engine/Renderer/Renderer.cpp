@@ -4,6 +4,8 @@
 
 #include "../Math/Rect.h"
 
+#include "Texture.h"
+
 #include <SDL.h>
 
 #include <SDL_ttf.h>
@@ -112,7 +114,7 @@ namespace neu{
 
 		SDL_Point center{ (int)origin.x , (int)origin.y};
 
-		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, rotation, &center, SDL_FLIP_NONE);
+		//SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, rotation, &center, SDL_FLIP_NONE);
 
 	}
 
@@ -138,7 +140,7 @@ namespace neu{
 
 		SDL_Point center{ (int)origin.x , (int)origin.y };
 
-		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
+		//SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
 
 	}
 
@@ -178,7 +180,7 @@ namespace neu{
 
 		SDL_RendererFlip flip = (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 
-		SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, Math::RadToDeg(mx.GetRotation()), &center, flip);
+		//SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, Math::RadToDeg(mx.GetRotation()), &center, flip);
 
 	}
 
