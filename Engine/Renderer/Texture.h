@@ -10,6 +10,8 @@
 
 #include <glad/glad.h>
 
+struct SDL_Pointer;
+
 struct SDL_Texture;
 
 struct SDL_Surface;
@@ -41,6 +43,8 @@ namespace neu{
 	private:
 
 		//SDL_Texture* m_texture = nullptr;
+
+		void FlipSurface(SDL_Surface* surface);
 
 		GLuint m_texture = 0;
 

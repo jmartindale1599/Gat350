@@ -2,6 +2,8 @@
 
 #include "rapidjson/document.h"
 
+#include "Math/MathUtils.h"
+
 #include <string>
 
 #include <vector>
@@ -29,6 +31,12 @@ namespace neu{
 		bool Get(const rapidjson::Value& value, const std::string& name, std::string& data);
 
 		bool Get(const rapidjson::Value& value, const std::string& name, Vector2& data);
+
+		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec2& data);
+
+		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec3& data);
+		
+		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec4& data);
 
 		bool Get(const rapidjson::Value& value, const std::string& name, Color& data);
 

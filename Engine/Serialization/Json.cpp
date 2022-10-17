@@ -11,6 +11,7 @@
 #include "../Math/Rect.h"
 
 #include <fstream>
+#include <Engine.h>
 
 namespace neu::json {
 	
@@ -152,6 +153,99 @@ namespace neu::json {
 
 		return true;
 
+	}
+
+	bool Get(const rapidjson::Value& value, const std::string& name, glm::vec2& data){
+
+		if (!value.HasMember(name.c_str())) return false;
+
+		if (!value[name.c_str()].IsArray()) {
+
+			LOG("error reading json data %s", name.c_str());
+
+			return false;
+
+		}
+
+		auto& array = value[name.c_str()];
+
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++) {
+
+			if (!array[i].IsNumber()) {
+
+				LOG("error reading json data (not a float) %s", name.c_str());
+
+				return false;
+
+			}
+
+			data[i] = array[i].GetFloat();
+
+		}
+
+		return true;
+	}
+
+	bool Get(const rapidjson::Value& value, const std::string& name, glm::vec3& data){
+
+		if (!value.HasMember(name.c_str())) return false;
+
+		if (!value[name.c_str()].IsArray()) {
+
+			LOG("error reading json data %s", name.c_str());
+
+			return false;
+
+		}
+
+		auto& array = value[name.c_str()];
+
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++) {
+
+			if (!array[i].IsNumber()) {
+
+				LOG("error reading json data (not a float) %s", name.c_str());
+
+				return false;
+
+			}
+
+			data[i] = array[i].GetFloat();
+
+		}
+
+		return true;
+	}
+
+	bool Get(const rapidjson::Value& value, const std::string& name, glm::vec4& data){
+		
+		if (!value.HasMember(name.c_str())) return false;
+
+		if (!value[name.c_str()].IsArray()) {
+
+			LOG("error reading json data %s", name.c_str());
+
+			return false;
+
+		}
+
+		auto& array = value[name.c_str()];
+
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++) {
+
+			if (!array[i].IsNumber()) {
+
+				LOG("error reading json data (not a float) %s", name.c_str());
+
+				return false;
+
+			}
+
+			data[i] = array[i].GetFloat();
+
+		}
+
+		return true;
 	}
 
 

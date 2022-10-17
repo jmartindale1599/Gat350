@@ -130,25 +130,29 @@ int main(int argc, char** argv){
 
 	// create program
 
-	GLuint program = glCreateProgram();
+	std::shared_ptr<neu::Program> program = neu::g_resources.Get<neu::Program>("shaders/basic.prog", GL_PROGRAM);
+
+	program->Link();
+
+	program->Use();
 	
-	glAttachShader(program, fs->m_shader);
-	
-	glAttachShader(program, vs->m_shader);
-	
-	glLinkProgram(program);
-
-	glUseProgram(program);
-
-	GLint uniform1 = glGetUniformLocation(program, "scale");
-
-	GLint uniform2 = glGetUniformLocation(program, "tint");
-
-	GLint uniform3 = glGetUniformLocation(program, "transform");
-
 	glm::mat4 mx{ 1 };
-
+	
 	//mx = glm::scale(glm::vec3{.7, .7, .7, .7});
+
+	// create material 
+
+	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("materials/box.mtrl");
+
+	material->Bind();
+
+	material->GetProgram()->SetUniform("tint", glm::vec3{ 1, 0, 0 });
+
+	material->GetProgram()->SetUniform("scale", 0.5f);
+
+	material->GetProgram()->SetUniform("scale", std::sin(neu::g_time.time * 3));
+	
+	material->GetProgram()->SetUniform("transform", mx);
 
 	//create texture
 
@@ -165,15 +169,13 @@ int main(int argc, char** argv){
 		neu::Engine::Instance().Update();
 
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape) == neu::InputSystem::State::Pressed) quit = true;
-		
-		glUniform3f(uniform2, 1, 0, 0);
 
-		glUniform1f(uniform1, std::sin(neu::g_time.time * 4));
+		program->SetUniform("scale", std::sin(neu::g_time.time * 3));
 
 		mx = glm::eulerAngleXYZ(0.0f, 0.0f, neu::g_time.time * 7);
 
-		glUniformMatrix4fv(uniform3, 1, GL_FALSE, glm::value_ptr(mx));
-	
+		program->SetUniform("transform", mx);
+
 		neu::g_renderer.BeginFrame();
 
 		glDrawArrays(GL_TRIANGLES, 0, 6);
