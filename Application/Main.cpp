@@ -2,51 +2,81 @@
 
 #include <iostream> 
 
-float points[] = {
+float vertices[] = {
 
-  -1, -1,  0,
-   
-  -1,  0,  0,
-  
-  0, -1,  0,
-
-  0, -1, 0,
-
-  0, 0, 0,
-
-  -1, 0, 0
-
-};
-
-glm::vec3 colors[] = { //change it to glm namespace
-
-	{0, 0, 1}, // rgb
+	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 	
-	{1, 0, 1},
+	0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 
+	0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
 	
-	{0, 1, 1},
+	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
 	
-	{1, 0, 0},
+	 -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	
+	 -0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 
-	{0, 1, 0},
+	
+	 -0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	 
+	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 
+	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 
+	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	
+	 -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	
+	 -0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 
-	{1, 1, 0}
+	
+	 -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	
+	 -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	
+	 -0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	
+	 -0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	
+	 -0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	
+	 -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
 
-};
+	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 
+	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 
+	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 
+	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 
+	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	 
+	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
 
-glm::vec2 textCoords[]{
+	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	
+	0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	
+	0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	
+	0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	
+	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	
+	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
 
-	{0,0},
-
-	{0,1},
-
-	{1,0},
-
-	{0,1},
-
-	{1,1},
-
-	{1,0}
+	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	
+	0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	
+	0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 
+	0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	
+	 -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	
+	 -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f
 
 };
 
@@ -70,29 +100,37 @@ int main(int argc, char** argv){
 
 	// create vertex buffer
 
-	GLuint pvbo = 0;
+	//GLuint pvbo = 0;
+	//
+	//glGenBuffers(1, &pvbo);
 	
-	glGenBuffers(1, &pvbo);
+	//glBindBuffer(GL_ARRAY_BUFFER, pvbo);
 	
-	glBindBuffer(GL_ARRAY_BUFFER, pvbo);
-	
-	glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(float), points, GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(float), points, GL_STATIC_DRAW);
 
-	GLuint cvbo = 0;
+	//GLuint cvbo = 0;
 
-	glGenBuffers(1, &cvbo);
+	//glGenBuffers(1, &cvbo);
 
-	glBindBuffer(GL_ARRAY_BUFFER, cvbo);
+	//glBindBuffer(GL_ARRAY_BUFFER, cvbo);
 
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec3), colors, GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec3), colors, GL_STATIC_DRAW);
 
-	GLuint tvbo = 0;
+	//GLuint tvbo = 0;
 
-	glGenBuffers(1, &tvbo);
+	//glGenBuffers(1, &tvbo);
 
-	glBindBuffer(GL_ARRAY_BUFFER, tvbo);
+	//glBindBuffer(GL_ARRAY_BUFFER, tvbo);
 
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec2), textCoords, GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec2), textCoords, GL_STATIC_DRAW);
+
+	GLuint vbo = 0;
+
+	glGenBuffers(1, &vbo);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	// create vertex array
 
@@ -102,25 +140,19 @@ int main(int argc, char** argv){
 
 	glBindVertexArray(vao);
 
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	glEnableVertexAttribArray(0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, pvbo);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 
 	glEnableVertexAttribArray(1);
 
-	glBindBuffer(GL_ARRAY_BUFFER, cvbo);
-
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 
 	glEnableVertexAttribArray(2);
 
-	glBindBuffer(GL_ARRAY_BUFFER, tvbo);
-
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 
 	// create shader
 
@@ -136,9 +168,11 @@ int main(int argc, char** argv){
 
 	program->Use();
 	
-	glm::mat4 mx{ 1 };
-	
-	//mx = glm::scale(glm::vec3{.7, .7, .7, .7});
+	glm::mat4 model{ 1 };
+
+	glm::mat4 projection = glm::perspective(13.32f, neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight(), 0.013f, 60.0f);
+
+	glm::vec3 cameraPosition{ 0,2,2 };
 
 	// create material 
 
@@ -150,9 +184,9 @@ int main(int argc, char** argv){
 
 	material->GetProgram()->SetUniform("scale", 0.5f);
 
-	material->GetProgram()->SetUniform("scale", std::sin(neu::g_time.time * 3));
+	//material->GetProgram()->SetUniform("scale", std::sin(neu::g_time.time * 3));
 	
-	material->GetProgram()->SetUniform("transform", mx);
+	material->GetProgram()->SetUniform("transform", model);
 
 	//create texture
 
@@ -169,16 +203,22 @@ int main(int argc, char** argv){
 		neu::Engine::Instance().Update();
 
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape) == neu::InputSystem::State::Pressed) quit = true;
+	
+		//add input to move camera
 
-		program->SetUniform("scale", std::sin(neu::g_time.time * 3));
+		glm::mat4 view = glm::lookAt(glm::vec3{ 0, 2, 2 }, glm::vec3{ 0,0,0 }, glm::vec3{ 0,1,0 });
 
-		mx = glm::eulerAngleXYZ(0.0f, 0.0f, neu::g_time.time * 7);
+		model = glm::eulerAngleXYZ(neu::g_time.time * -5, neu::g_time.time * 3, 0.0f);
 
-		program->SetUniform("transform", mx);
+		glm::mat4 mvp = projection * view * model;
+
+		//program->SetUniform("scale", std::sin(neu::g_time.time * 3));
+
+		program->SetUniform("mvp", mvp);
 
 		neu::g_renderer.BeginFrame();
 
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		neu::g_renderer.EndFrame();
 	

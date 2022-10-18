@@ -12,7 +12,7 @@ out vec2 textcoord;
 
 uniform float scale;
 
-uniform mat4 transform;
+uniform mat4 mvp;
 
 void main(){
 
@@ -20,7 +20,7 @@ void main(){
 
 	textcoord = vtextcoord;
 
-	vec4 tposition = vec4(vposition * scale, 1.0) * transform;
+	vec4 tposition = mvp * vec4(vposition * scale, 1.0);
 
 	gl_Position = tposition; //vec4(vposition * scale, 1.0);
 
