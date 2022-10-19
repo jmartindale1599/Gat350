@@ -18,7 +18,7 @@ namespace neu{
 
 	}
 
-	b2Body* PhysicsSystem::CreateBody(const Vector2& position, float angle, const RigidBodyData& data){
+	/*b2Body* PhysicsSystem::CreateBody(const Vector2& position, float angle, const RigidBodyData& data){
 		
 		Vector2 worldPosition = ScreenToWorld(position);
 
@@ -36,7 +36,7 @@ namespace neu{
 
 		return body;
 	
-	}
+	}*/
 
 	void PhysicsSystem::DestroyBody(b2Body* body)
 	{

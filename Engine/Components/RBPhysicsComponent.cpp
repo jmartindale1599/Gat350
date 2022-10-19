@@ -16,7 +16,7 @@ namespace neu {
 
 	void RBPhysicsComponent::Initialize(){
 	
-		m_body = g_physicsSystem.CreateBody(m_owner->m_transform.position, m_owner->m_transform.rotation, data);
+		//m_body = g_physicsSystem.CreateBody(m_owner->m_transform.position, m_owner->m_transform.rotation, data);
 	
 		m_body->SetGravityScale(data.gravityScale);
 
@@ -28,9 +28,9 @@ namespace neu {
 
 		Vector2 Position = B2VEC2_TO_VECTOR2(m_body->GetPosition());
 
-		m_owner->m_transform.position = PhysicsSystem::WorldToScreen(Position);
+		//m_owner->m_transform.position = PhysicsSystem::WorldToScreen(Position);
 		
-		m_owner->m_transform.rotation = Math::RadToDeg(m_body->GetAngle());
+		//m_owner->m_transform.rotation = Math::RadToDeg(m_body->GetAngle());
 
 		velocity = B2VEC2_TO_VECTOR2(m_body->GetLinearVelocity());
 

@@ -14,61 +14,41 @@ namespace neu {
 
 	struct Transform : public ISerializable {
 
-		Vector2 position;
+		glm::vec3 position{ 1 };
 
-		float rotation{ 0 };
+		glm::vec3 rotation{ 0 };
 
-		Vector2 scale{ 1, 1 };
+		glm::vec3 scale{ 1 };
 
-		Matrix3x3 matrix;
+		glm::mat4 matrix;
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 
 		virtual bool Read(const rapidjson::Value& value) override;
 
+		Transform() = default;
+
+		Transform(const glm::vec3& position, const glm::vec3& rotation, const glm::vec3& scale = glm::vec3{ 1 }) : position{ position }, rotation{ rotation }, scale{ scale }{}
+
 		void Update() {
 
-			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-
-			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(Math::DegToRad(rotation));
-
-			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
-
-			matrix = { mxTranslation * mxRotation * mxScale };
+			matrix = *this;
 
 		}
 
-		void Update(const Matrix3x3& parent) {
+		void Update(const glm::mat4& parent) {
 
-			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-
-			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(Math::DegToRad(rotation));
-
-			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
-
-			matrix = { mxTranslation * mxRotation * mxScale };
-
-			matrix = parent * matrix;
+			matrix = parent * (glm::mat4)*this;
 
 		}
 
-		//operator Matrix2x2 () const {
+		operator glm::mat4() const {
 
-		//	Matrix2x2 mxScale = Matrix2x2::CreateScale(scale);
+			glm::mat4 mxScale = glm::scale(scale);
 
-		//	Matrix2x2 mxRotation = Matrix2x2::CreateRotation(Math::DegToRad(rotation));
+			glm::mat4 mxRotation = glm::eulerAngleXYZ(rotation.x, rotation.y, rotation.z);
 
-		//	return { mxScale * mxRotation };
-
-		//}
-
-		operator Matrix3x3 () const {
-
-			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-
-			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(Math::DegToRad(rotation));
-
-			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
+			glm::mat4 mxTranslation = glm::translate(position);
 
 			return { mxTranslation * mxRotation * mxScale };
 

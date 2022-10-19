@@ -100,59 +100,15 @@ int main(int argc, char** argv){
 
 	// create vertex buffer
 
-	//GLuint pvbo = 0;
-	//
-	//glGenBuffers(1, &pvbo);
-	
-	//glBindBuffer(GL_ARRAY_BUFFER, pvbo);
-	
-	//glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(float), points, GL_STATIC_DRAW);
+	std::shared_ptr<neu::VertexBuffer> vb = neu::g_resources.Get<neu::VertexBuffer>("box");
 
-	//GLuint cvbo = 0;
+	vb->CreateVertexBuffer(sizeof(vertices), 36, vertices);
 
-	//glGenBuffers(1, &cvbo);
+	vb->SetAttribute(0, 3, 8 * sizeof(float), 0);
 
-	//glBindBuffer(GL_ARRAY_BUFFER, cvbo);
+	vb->SetAttribute(1, 3, 8 * sizeof(float), 3 * sizeof(float));
 
-	//glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec3), colors, GL_STATIC_DRAW);
-
-	//GLuint tvbo = 0;
-
-	//glGenBuffers(1, &tvbo);
-
-	//glBindBuffer(GL_ARRAY_BUFFER, tvbo);
-
-	//glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec2), textCoords, GL_STATIC_DRAW);
-
-	GLuint vbo = 0;
-
-	glGenBuffers(1, &vbo);
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	// create vertex array
-
-	GLuint vao = 0;
-
-	glGenVertexArrays(1, &vao);
-
-	glBindVertexArray(vao);
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-	glEnableVertexAttribArray(0);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-
-	glEnableVertexAttribArray(1);
-
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-
-	glEnableVertexAttribArray(2);
-
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	vb->SetAttribute(2, 3, 8 * sizeof(float), 6 * sizeof(float));
 
 	// create shader
 
@@ -170,9 +126,9 @@ int main(int argc, char** argv){
 	
 	glm::mat4 model{ 1 };
 
-	glm::mat4 projection = glm::perspective(13.32f, neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight(), 0.013f, 60.0f);
+	glm::mat4 projection = glm::perspective(45.0f, neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight(), 0.01f, 100.0f);
 
-	glm::vec3 cameraPosition = glm::vec3{ 0,2,2 };
+	glm::vec3 cameraPosition = glm::vec3{ 0,0,2 };
 
 	// create material 
 
@@ -208,7 +164,7 @@ int main(int argc, char** argv){
 	
 		if (neu::g_inputSystem.GetKeyState(neu::key_d) == neu::InputSystem::State::Held){
 
-			cameraPosition.x += speed * neu::g_time.deltaTime;
+			cameraPosition.x -= speed * neu::g_time.deltaTime;
 	
 			//std::string str{ "Camera Position: x:" };
 			
@@ -220,31 +176,31 @@ int main(int argc, char** argv){
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_a) == neu::InputSystem::State::Held) {
 
-			cameraPosition.x -= speed * neu::g_time.deltaTime;
+			cameraPosition.x += speed * neu::g_time.deltaTime;
 
 		}
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::State::Held) {
 
-			cameraPosition.z += speed * neu::g_time.deltaTime;
+			cameraPosition.z -= speed * neu::g_time.deltaTime;
 
 		}
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_shift) == neu::InputSystem::State::Held) {
 
-			cameraPosition.z -= speed * neu::g_time.deltaTime;
+			cameraPosition.z += speed * neu::g_time.deltaTime;
 
 		}
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_w) == neu::InputSystem::State::Held) {
 
-			cameraPosition.y += speed * neu::g_time.deltaTime;
+			cameraPosition.y -= speed * neu::g_time.deltaTime;
 
 		}
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_s) == neu::InputSystem::State::Held) {
 
-			cameraPosition.y -= speed * neu::g_time.deltaTime;
+			cameraPosition.y += speed * neu::g_time.deltaTime;
 
 		}
 
@@ -260,7 +216,7 @@ int main(int argc, char** argv){
 
 		neu::g_renderer.BeginFrame();
 
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		vb->Draw();
 
 		neu::g_renderer.EndFrame();
 	

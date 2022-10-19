@@ -45,7 +45,7 @@ namespace neu {
 
 		//draw model
 
-		for (int i = 0; i < m_points.size() - 1; i++) {
+		/*for (int i = 0; i < m_points.size() - 1; i++) {
 
 			neu::Vector2 p1 = Vector2::Rotate((m_points[i] * scale), angle) + position;
 
@@ -53,13 +53,13 @@ namespace neu {
 
 			renderer.DrawLine(p1, p2, m_color);
 
-		}
+		}*/
 
 	}
 
 	void Model::Draw(Renderer& renderer, const Transform& transform){
 
-		Matrix3x3 mx = transform.matrix;
+		/*Matrix3x3 mx = transform.matrix;
 
 		for (int i = 0; i < m_points.size() - 1; i++) {
 
@@ -69,7 +69,7 @@ namespace neu {
 
 			renderer.DrawLine(p1, p2, m_color);
 
-		}
+		}*/
 
 	}
 

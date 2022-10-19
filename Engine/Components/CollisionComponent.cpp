@@ -18,7 +18,7 @@ namespace neu {
 
                     if (renderComponent){
 
-                        data.size = Vector2{ renderComponent->GetSource().w, renderComponent->GetSource().h};
+                        //data.size = Vector2{ renderComponent->GetSource().w, renderComponent->GetSource().h};
 
                     }
 

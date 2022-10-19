@@ -38,6 +38,8 @@
 
 #include "Renderer/Material.h"
 
+#include "Renderer/VertexBuffer.h"
+
 #include "Model.h"
 
 #include "Input/InputSystem.h"

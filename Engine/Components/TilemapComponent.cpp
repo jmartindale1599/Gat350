@@ -20,7 +20,7 @@ namespace  neu{
                 
                 int y = i / num_columns;
 
-                actor->m_transform.position = m_owner->m_transform.position + (Vector2{ x, y } *size);
+                //actor->m_transform.position = m_owner->m_transform.position + (Vector2{ x, y } *size);
                 
                 m_owner->GetScene()->Add(std::move(actor));
             
