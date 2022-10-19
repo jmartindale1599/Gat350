@@ -30,11 +30,13 @@ namespace neu {
 
 		void Update();
 
+		State GetKeyState(uint32_t key);
+
 		bool GetKeyDown(int key) { return m_keyboardState[key]; }
 
-		const Vector2& GetMousePosition() const { return m_mousePosition; }
+		bool GetPrevKeyDown(uint32_t key) { return m_prevKeyboardState[key]; }
 
-		State GetButtonState(uint32_t button);
+		const Vector2& GetMousePosition() const { return m_mousePosition; }
 
 		bool GetButtonDown(uint32_t button) { return m_mouseButtonState[button]; }
 
@@ -57,6 +59,8 @@ namespace neu {
 	};
 
 	extern const uint32_t key_space;
+
+	extern const uint32_t key_shift;
 	
 	extern const uint32_t key_w;
 	

@@ -8,6 +8,8 @@ namespace neu {
 
 	const uint32_t key_space = SDL_SCANCODE_SPACE;
 
+	const uint32_t key_shift = SDL_SCANCODE_LSHIFT;
+
 	const uint32_t key_w = SDL_SCANCODE_W;
 
 	const uint32_t key_a = SDL_SCANCODE_A;
@@ -82,31 +84,21 @@ namespace neu {
 
 	}
 
-	neu::InputSystem::State InputSystem::GetButtonState(uint32_t button){
+	InputSystem::State InputSystem::GetKeyState(uint32_t key){
 
 		State keyState = State::Idle;
 
-		bool buttonDown = GetButtonDown(button);
+		bool keyDown = GetKeyDown(key);
 
-		bool prevButtonDown = GetPreviousButtonDown(button);
+		bool prevKeyDown = GetPrevKeyDown(key);
 
-		if (buttonDown && prevButtonDown) {
+		if (keyDown) {
 
-			keyState = State::Held;
+			keyState = (prevKeyDown) ? State::Held : State::Pressed;
 
-		}else if (!buttonDown && prevButtonDown) {
+		}else {
 
-			keyState = State::Released;
-
-		}
-		else if (!prevButtonDown && buttonDown) {
-
-			keyState = State::Pressed;
-
-		}
-		else {
-
-			keyState = State::Idle;
+			keyState = (prevKeyDown) ? State::Released : State::Idle;
 
 		}
 

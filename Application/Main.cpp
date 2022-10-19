@@ -172,7 +172,7 @@ int main(int argc, char** argv){
 
 	glm::mat4 projection = glm::perspective(13.32f, neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight(), 0.013f, 60.0f);
 
-	glm::vec3 cameraPosition{ 0,2,2 };
+	glm::vec3 cameraPosition = glm::vec3{ 0,2,2 };
 
 	// create material 
 
@@ -198,17 +198,59 @@ int main(int argc, char** argv){
 
 	bool quit = false;
 
+	float speed = 3;
+
 	while (!quit){
 
 		neu::Engine::Instance().Update();
 
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape) == neu::InputSystem::State::Pressed) quit = true;
 	
-		//add input to move camera
+		if (neu::g_inputSystem.GetKeyState(neu::key_d) == neu::InputSystem::State::Held){
 
-		glm::mat4 view = glm::lookAt(glm::vec3{ 0, 2, 2 }, glm::vec3{ 0,0,0 }, glm::vec3{ 0,1,0 });
+			cameraPosition.x += speed * neu::g_time.deltaTime;
+	
+			//std::string str{ "Camera Position: x:" };
+			
+			//str.append(std::to_string(cameraPosition.x)).append(" y:").append(std::to_string(cameraPosition.y)).append(" z:").append(std::to_string(cameraPosition.z));
+			
+			//LOG(str.c_str());
+		
+		}
 
-		model = glm::eulerAngleXYZ(neu::g_time.time * -5, neu::g_time.time * 3, 0.0f);
+		if (neu::g_inputSystem.GetKeyState(neu::key_a) == neu::InputSystem::State::Held) {
+
+			cameraPosition.x -= speed * neu::g_time.deltaTime;
+
+		}
+
+		if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::State::Held) {
+
+			cameraPosition.z += speed * neu::g_time.deltaTime;
+
+		}
+
+		if (neu::g_inputSystem.GetKeyState(neu::key_shift) == neu::InputSystem::State::Held) {
+
+			cameraPosition.z -= speed * neu::g_time.deltaTime;
+
+		}
+
+		if (neu::g_inputSystem.GetKeyState(neu::key_w) == neu::InputSystem::State::Held) {
+
+			cameraPosition.y += speed * neu::g_time.deltaTime;
+
+		}
+
+		if (neu::g_inputSystem.GetKeyState(neu::key_s) == neu::InputSystem::State::Held) {
+
+			cameraPosition.y -= speed * neu::g_time.deltaTime;
+
+		}
+
+		glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
+
+		model = glm::eulerAngleXYZ(neu::g_time.time * -2, neu::g_time.time * 3, 0.0f);
 
 		glm::mat4 mvp = projection * view * model;
 
