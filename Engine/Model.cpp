@@ -1,134 +1,106 @@
-#include "Model.h"
 
-#include "Math/Transform.h"
+#include "Model.h" 
 
-#include "Core/Logger.h"
+#include "Core/Logger.h" 
 
-#include "Core/File.h"
+namespace neu{
 
-#include <sstream>
+    bool Model::Create(std::string filename, ...){
 
-#include <iostream>
+        Assimp::Importer importer;
 
-namespace neu {
+        const aiScene* scene = importer.ReadFile(filename, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
-	Model::Model(const std::string filename){
+        if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode){
 
-		Load(filename);
-		
-		m_radius = calcRadius();
+            LOG("error loading assimp file %s", importer.GetErrorString());
+            
+            return false;
+        
+        }
 
-	}
+        ProcessNode(scene->mRootNode, scene);
 
-	bool Model::Create(std::string filename, ...){
+        return true;
+    
+    }
 
-		if (!Load(filename)) {
+    void Model::ProcessNode(aiNode* node, const aiScene* scene){
 
-			LOG("Error could not read file %s", filename.c_str());
+        // process the current node meshes 
+        
+        for (unsigned int i = 0; i < node->mNumMeshes; i++){
 
-			return false;
-		}
+            aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+            
+            ProcessMesh(mesh, scene);
+        
+        }
+        
+        // process the current node children 
+        
+        for (unsigned int i = 0; i < node->mNumChildren; i++){
 
-		return true;
-	
-	}
+            ProcessNode(node->mChildren[i], scene);
+        
+        }
+    
+    }
 
-	void Model::Draw(Renderer& renderer, const Vector2& position, float angle, float scale) {
+    void Model::ProcessMesh(aiMesh* mesh, const aiScene* scene){
 
-		//color.r = neu::random(256);
+        std::vector<vertex_t> vertices;
 
-		//color.g = neu::random(256);
+        // get model vertex attributes 
+        
+        for (size_t i = 0; i < mesh->mNumVertices; i++){
 
-		//color.b = neu::random(256);
+            vertex_t vertex;
 
-		//color.r = 255;
+            vertex.position = { mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z };
+            
+            if (mesh->mTextureCoords[0]){
 
-		//draw model
+                vertex.texcoord = { mesh->mTextureCoords[0][i].x, mesh -> mTextureCoords[0][i].y };
+            
+            }else{
 
-		/*for (int i = 0; i < m_points.size() - 1; i++) {
+                vertex.texcoord = { 0, 0 };
+            
+            }
 
-			neu::Vector2 p1 = Vector2::Rotate((m_points[i] * scale), angle) + position;
+            vertices.push_back(vertex);
+ 
+        }
 
-			neu::Vector2 p2 = Vector2::Rotate((m_points[i + 1] * scale), angle) + position;
+        // create vertex buffer and attributes 
 
-			renderer.DrawLine(p1, p2, m_color);
+        m_vertexBuffer.CreateVertexBuffer((GLsizei)(sizeof(vertex_t) * vertices.size()), (GLsizei)vertices.size(), vertices.data());
 
-		}*/
+        m_vertexBuffer.SetAttribute(0, 3, sizeof(vertex_t), 0);
+        
+        m_vertexBuffer.SetAttribute(1, 2, sizeof(vertex_t), offsetof(vertex_t, texcoord));
 
-	}
+        // get model index vertices 
+        
+        std::vector<GLuint> indices;
+        
+        for (size_t i = 0; i < mesh->mNumFaces; i++){
 
-	void Model::Draw(Renderer& renderer, const Transform& transform){
+            aiFace face = mesh->mFaces[i];
+            
+            for (size_t j = 0; j < face.mNumIndices; j++){
 
-		/*Matrix3x3 mx = transform.matrix;
+                indices.push_back(face.mIndices[j]);
+            
+            }
+        
+        }
 
-		for (int i = 0; i < m_points.size() - 1; i++) {
+        // create index vertex buffer 
 
-			neu::Vector2 p1 = mx * m_points[i];
+        m_vertexBuffer.createIndexBuffer(GL_UNSIGNED_INT, (GLsizei)indices.size(), indices.data());
 
-			neu::Vector2 p2 = mx * m_points[i + 1];
-
-			renderer.DrawLine(p1, p2, m_color);
-
-		}*/
-
-	}
-
-	bool Model::Load(const std::string& filename){
-
-		std::string buffer;
-
-		if (!neu::ReadFile(filename, buffer)) {
-
-			LOG("Error could not read file %s", filename.c_str());
-
-			return false;
-
-		}
-
-		//read color
-
-		std::istringstream stream(buffer);
-
-		stream >> m_color;
-
-		//get points
-
-		std::string line;
-
-		std::getline(stream, line);
-
-		size_t numPoints = std::stoi(line);
-
-		//read points
-
-		for (size_t i = 0; i < numPoints; i++) {
-
-			Vector2 point;
-
-			stream >> point;
-
-			m_points.push_back(point);
-
-		}
-
-		return true;
-
-	}
-
-	float Model::calcRadius(){
-
-		float radius = 0;
-
-		//finds the largest length (radius)
-
-		for (auto point : m_points) {
-
-			if (point.Legnth() > radius) radius = point.Legnth();
-
-		}
-
-		return radius;
-	
-	}
+    }
 
 }

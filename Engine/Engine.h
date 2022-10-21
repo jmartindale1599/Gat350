@@ -4,6 +4,8 @@
 
 #include "Core/File.h"
 
+#include "Model.h"
+
 #include "Core/Memory.h"
 
 #include "Core/Time.h"
@@ -39,8 +41,6 @@
 #include "Renderer/Material.h"
 
 #include "Renderer/VertexBuffer.h"
-
-#include "Model.h"
 
 #include "Input/InputSystem.h"
 

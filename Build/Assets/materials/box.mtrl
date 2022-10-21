@@ -3,7 +3,7 @@
 
     "program":"shaders/basic.prog", 
 
-    "texture":"textures/box.png", 
+    "texture":"textures/spot.png", 
 
     "ambient":[ 
 

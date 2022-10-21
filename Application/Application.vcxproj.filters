@@ -32,5 +32,8 @@
     <None Include="..\Build\Assets\materials\box.mtrl">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\Build\Assets\materials\cow.mtrl">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

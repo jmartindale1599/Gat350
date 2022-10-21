@@ -100,15 +100,15 @@ int main(int argc, char** argv){
 
 	// create vertex buffer
 
-	std::shared_ptr<neu::VertexBuffer> vb = neu::g_resources.Get<neu::VertexBuffer>("box");
+	//std::shared_ptr<neu::VertexBuffer> vb = neu::g_resources.Get<neu::VertexBuffer>("box");
 
-	vb->CreateVertexBuffer(sizeof(vertices), 36, vertices);
+	//vb->CreateVertexBuffer(sizeof(vertices), 36, vertices);
 
-	vb->SetAttribute(0, 3, 8 * sizeof(float), 0);
+	//vb->SetAttribute(0, 3, 8 * sizeof(float), 0);
 
-	vb->SetAttribute(1, 3, 8 * sizeof(float), 3 * sizeof(float));
+	//vb->SetAttribute(1, 3, 8 * sizeof(float), 3 * sizeof(float));
 
-	vb->SetAttribute(2, 3, 8 * sizeof(float), 6 * sizeof(float));
+	//vb->SetAttribute(2, 3, 8 * sizeof(float), 6 * sizeof(float));
 
 	// create shader
 
@@ -132,7 +132,7 @@ int main(int argc, char** argv){
 
 	// create material 
 
-	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("materials/box.mtrl");
+	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("materials/cow.mtrl");
 
 	material->Bind();
 
@@ -150,11 +150,35 @@ int main(int argc, char** argv){
 
 	std::shared_ptr<neu::Texture> texture2 = neu::g_resources.Get<neu::Texture>("textures/llama.png");
 
-	texture1->Bind();
+	std::shared_ptr<neu::Texture> texture3 = neu::g_resources.Get<neu::Texture>("textures/spot.png");
+
+	texture3->Bind();
 
 	bool quit = false;
 
 	float speed = 3;
+
+	//neu::Transform transforms[] = {
+
+	//	{ {neu::random(-1, 3),0,0}, {14, 90, 0} },
+
+	//	{ {0,0,-2}, {0, 90, 67} },
+
+	//	{ {neu::random(-1, 3),2,neu::random(-1, 3)}, {0, 97, 6} },
+
+	//	{ {0,neu::random(-1, 3),1}, {10, 98, 13} }
+	//
+	//};
+
+	std::vector<neu::Transform> transforms;
+
+	for (size_t i = 0; i < 50; i++) {
+
+		transforms.push_back({ {neu::randomf(-1, 3), neu::randomf(-1, 3), neu::randomf(-1, 3) }, { neu::random(360), neu::random(360), neu::random(360)}});
+
+	}
+
+	auto m = neu::g_resources.Get<neu::Model>("models/spot.obj");
 
 	while (!quit){
 
@@ -206,17 +230,25 @@ int main(int argc, char** argv){
 
 		glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
 
-		model = glm::eulerAngleXYZ(neu::g_time.time * -2, neu::g_time.time * 3, 0.0f);
-
-		glm::mat4 mvp = projection * view * model;
+		//model = glm::eulerAngleXYZ(neu::g_time.time * -2, neu::g_time.time * 3, 0.0f);
 
 		//program->SetUniform("scale", std::sin(neu::g_time.time * 3));
 
-		program->SetUniform("mvp", mvp);
-
 		neu::g_renderer.BeginFrame();
 
-		vb->Draw();
+		for (size_t i = 0; i < transforms.size(); i++) {
+
+			transforms[i].rotation += glm::vec3{ 0, 27.3f * neu::g_time.deltaTime, 0 };
+
+			glm::mat4 mvp = projection * view * (glm::mat4)transforms[i];
+
+			program->SetUniform("mvp", mvp);
+
+			//vb->Draw();
+
+			m->m_vertexBuffer.Draw();
+
+		}
 
 		neu::g_renderer.EndFrame();
 	

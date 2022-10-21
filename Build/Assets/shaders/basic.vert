@@ -2,9 +2,9 @@
 
 layout(location = 0) in vec3 vposition; // 0
 
-layout(location = 1) in vec3 vcolor; // 1
+//layout(location = 1) in vec3 vcolor; // 1
 
-layout(location = 2) in vec2 vtextcoord;
+layout(location = 1) in vec2 vtextcoord;
 
 out vec3 color;
 
@@ -16,7 +16,7 @@ uniform mat4 mvp;
 
 void main(){
 
-	color = vcolor;
+	//color = vcolor;
 
 	textcoord = vtextcoord;
 
