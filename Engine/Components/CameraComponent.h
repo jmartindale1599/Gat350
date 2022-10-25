@@ -2,8 +2,6 @@
 
 #include "Framework/Component.h" 
 
-#include "Math/3x3.h" 
-
 namespace neu{
 
 	class CameraComponent : public Component{
@@ -12,28 +10,23 @@ namespace neu{
 		
 		CLASS_CLONE(CameraComponent)
 
-		virtual void Initialize() override;
-		
-		virtual void Update() override;
+		void Update() override;
 
-		const Matrix3x3& GetView() { return m_view; }
 
-		void SetViewport(const Vector2& size);
+		void SetPerspective(float fov, float aspectRatio, float near, float far);
+
+		const glm::mat4& GetProjection() { return m_projection; }
 		
-		const Matrix3x3& GetViewport() { return m_viewport; }
+		const glm::mat4& GetView() { return m_view; }
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		
 		virtual bool Read(const rapidjson::Value& value) override;
 
-	public:
-		
-		Vector2 viewport_size;
+		glm::mat4 m_projection{ 1 };
 
-		Matrix3x3 m_view;
-		
-		Matrix3x3 m_viewport;
-	
+		glm::mat4 m_view{ 1 };
+
 	};
 
 }

@@ -1,20 +1,24 @@
 #include "ModelComponent.h"
 
-#include "../Model.h"
+#include "Renderer/Material.h" 
 
-#include "../Engine.h"
+#include "Model.h"
 
-#include "../FrameWork/Actor.h"
+#include "Engine.h"
 
-void neu::ModelComponent::Update(){
-
-
-
-}
+#include "FrameWork/Actor.h"
 
 void neu::ModelComponent::Draw(Renderer& renderer){
 
-	//m_model->Draw(renderer, m_owner->m_transform);
+	material->Bind();
+		
+	material->GetProgram() -> SetUniform("model", (glm::mat4)m_owner->m_transform);
+
+	material->GetProgram() -> SetUniform("view", renderer.getView());
+
+	material->GetProgram() -> SetUniform("projection", renderer.getProjection());
+
+	model->m_vertexBuffer.Draw();
 
 }
 
@@ -30,7 +34,13 @@ bool neu::ModelComponent::Read(const rapidjson::Value& value){
 
 	READ_DATA(value, model_name);
 
-	m_model = g_resources.Get<Model>(model_name);
+	std::string material_name;
+
+	READ_DATA(value, material_name);
+
+	model = g_resources.Get<Model>(model_name);
+
+	material = g_resources.Get<Material>(material_name);
 
 	return true;
 

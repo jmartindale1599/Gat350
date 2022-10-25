@@ -4,15 +4,19 @@
 
 namespace neu {
 
-	class Model;
+	class Renderer;
 
+	class Model;
+	
+	class Material;
+	
 	class ModelComponent : public RenderComponent {
 
 	public:
 
 		CLASS_CLONE(ModelComponent)
 
-		virtual void Update() override;
+		virtual void Update() override {};
 
 		virtual void Draw(Renderer& renderer) override;
 
@@ -20,7 +24,9 @@ namespace neu {
 
 		virtual bool Read(const rapidjson::Value& value) override;
 
-		std::shared_ptr<Model> m_model;
+		std::shared_ptr<Model> model;
+
+		std::shared_ptr<Material> material;
 
 	};
 

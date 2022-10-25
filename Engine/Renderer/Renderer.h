@@ -1,13 +1,14 @@
 #pragma once
 
-#include "../Math/Vector2.h"
-
-#include "../Math/Color.h"
+#include "Math/Color.h"
 
 #include "Math/3X3.h"
 
 //#include "../Renderer/Texture.h"
+
 #include <glad/glad.h>
+
+#include <glm/glm.hpp>
 
 #include <SDL.h> 
 
@@ -55,9 +56,13 @@ namespace neu {
 
 		void DrawPoint(const Vector2& v, const Color& color);
 
-		void SetViewMatrix(const Matrix3x3& view) { m_view = view; }
+		const glm::mat4& getView() { return m_view; }
 
-		void SetViewportMatrix(const Matrix3x3& viewport) { m_viewport = viewport; }
+		void setView(const glm::mat4& view) { m_view = view; }
+
+		const glm::mat4& getProjection() { return m_projection; }
+
+		void setProjection(const glm::mat4& projection) { m_projection = projection; }
 
 		void SetClearColor(const Color& color) { m_clearColor = color; }
 
@@ -75,9 +80,9 @@ namespace neu {
 
 		int m_height = 0;
 
-		Matrix3x3 m_view;
+		glm::mat4 m_view{ 1 };
 
-		Matrix3x3 m_viewport;
+		glm::mat4 m_projection{ 1 };
 
 		SDL_Renderer* m_renderer = nullptr;
 

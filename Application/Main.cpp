@@ -98,6 +98,26 @@ int main(int argc, char** argv){
 
 	LOG("Window Initialized . . .");
 
+	// load scene 
+
+	auto scene = std::make_unique<neu::Scene>();
+
+	rapidjson::Document document;
+	
+	bool success = neu::json::Load("scenes/basic.scn", document);
+	
+	if (!success){
+
+		LOG("error loading scene file %s.", "scenes/basic.scn");
+	
+	}else{
+
+		scene->Read(document);
+		
+		scene->Initialize();
+	
+	}
+
 	// create vertex buffer
 
 	//std::shared_ptr<neu::VertexBuffer> vb = neu::g_resources.Get<neu::VertexBuffer>("box");
@@ -185,6 +205,8 @@ int main(int argc, char** argv){
 		neu::Engine::Instance().Update();
 
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape) == neu::InputSystem::State::Pressed) quit = true;
+
+		scene->Update();
 	
 		if (neu::g_inputSystem.GetKeyState(neu::key_d) == neu::InputSystem::State::Held){
 
@@ -236,9 +258,11 @@ int main(int argc, char** argv){
 
 		neu::g_renderer.BeginFrame();
 
+		scene->Draw(neu::g_renderer);
+
 		for (size_t i = 0; i < transforms.size(); i++) {
 
-			transforms[i].rotation += glm::vec3{ 0, 27.3f * neu::g_time.deltaTime, 0 };
+			transforms[i].rotation += glm::vec3{ 0, 127.3f * neu::g_time.deltaTime, 0 };
 
 			glm::mat4 mvp = projection * view * (glm::mat4)transforms[i];
 
@@ -253,6 +277,8 @@ int main(int argc, char** argv){
 		neu::g_renderer.EndFrame();
 	
 	}
+
+	scene->removeAll();
 
 	neu::Engine::Instance().Shutdown();
 
