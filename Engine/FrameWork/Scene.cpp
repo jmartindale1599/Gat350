@@ -43,6 +43,30 @@ namespace neu {
 
 	}
 
+	bool Scene::Create(std::string name, ...) {
+
+		auto scene = std::make_unique<neu::Scene>();
+
+		rapidjson::Document document;
+
+		bool success = neu::json::Load("scenes/basic.scn", document);
+
+		if (!success) {
+
+			LOG("error loading scene file %s.", "scenes/basic.scn");
+
+		}else {
+
+			scene->Read(document);
+
+			scene->Initialize();
+
+		}
+
+		return true;
+
+	}
+
 	void Scene::Draw(Renderer& renderer){
 
 		// get camera / set renderer view/projection 

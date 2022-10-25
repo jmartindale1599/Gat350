@@ -2,6 +2,8 @@
 
 #include "Actor.h"
 
+#include "Resource/Resource.h"
+
 #include <list>
 
 #include <memory>
@@ -16,7 +18,7 @@ namespace neu {
 
 	class Game;
 
-	class Scene : public GameObject, public ISerializable{
+	class Scene : public GameObject, public ISerializable, public Resource{
 
 	public:
 
@@ -27,6 +29,8 @@ namespace neu {
 		Scene(const Scene& other) {}
 
 		~Scene() = default;
+
+		virtual bool Create(std::string name, ...) override;
 
 		CLASS_CLONE(Scene)
 
