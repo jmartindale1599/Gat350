@@ -169,6 +169,9 @@
     <ClCompile Include="Components\CameraController.cpp">
       <Filter>Sources\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\LightComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Memory.h">
@@ -337,6 +340,9 @@
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Components\CameraController.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\LightComponent.h">
       <Filter>Sources\Components</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,6 +4,8 @@
 
 #include <map>
 
+#include <vector>
+
 #include <string>
 
 #include <memory>
@@ -25,9 +27,12 @@ namespace neu {
 
 		std::shared_ptr<T> Get(const std::string& name, TArgs... args);
 
-	private:
+		template<typename T>
 
-		std::map<std::string, std::shared_ptr<Resource>> m_library;
+		std::vector<std::shared_ptr<T>> Get();
+
+	private:
+		std::map<std::string, std::shared_ptr<Resource>> m_resources;
 
 	};
 
@@ -35,11 +40,11 @@ namespace neu {
 
 	inline std::shared_ptr<T> ResourceManager::Get(const std::string& name, TArgs... args){
 
-		if (m_library.find(name) != m_library.end()){
+		if (m_resources.find(name) != m_resources.end()){
 
 			// found 
 
-			return std::dynamic_pointer_cast<T>(m_library[name]);
+			return std::dynamic_pointer_cast<T>(m_resources[name]);
 
 		}else{
 
@@ -49,11 +54,37 @@ namespace neu {
 
 			resource->Create(name, args...);
 
-			m_library[name] = resource;
+			m_resources[name] = resource;
 
 			return resource;
 
 		}
+
+	}
+
+	template <typename T>
+
+	inline std::vector<std::shared_ptr<T>> ResourceManager::Get(){
+
+		std::vector<std::shared_ptr<T>> result;
+
+		for (auto& resource : m_resources) {
+
+			// get the value of the map (first = key, second = value)
+
+			// the value is a shared_ptr, get() the raw pointer and try to cast to type T*
+
+			if (dynamic_cast<T*>(resource.second.get())) {
+
+				// if it is of type T, add the shared pointer to the vector
+
+				result.push_back(std::dynamic_pointer_cast<T>(resource.second));
+
+			}
+
+		}
+
+		return result;
 
 	}
 

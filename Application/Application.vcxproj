@@ -146,9 +146,13 @@
     <None Include="..\Build\Assets\materials\box.mtrl" />
     <None Include="..\Build\Assets\materials\cow.mtrl" />
     <None Include="..\Build\Assets\scenes\basic.scn" />
+    <None Include="..\Build\Assets\scenes\basicLit.scn" />
     <None Include="..\Build\Assets\shaders\basic.frag" />
     <None Include="..\Build\Assets\shaders\basic.prog" />
     <None Include="..\Build\Assets\shaders\basic.vert" />
+    <None Include="..\Build\Assets\shaders\basicLit.frag" />
+    <None Include="..\Build\Assets\shaders\basicLit.prog" />
+    <None Include="..\Build\Assets\shaders\basicLit.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

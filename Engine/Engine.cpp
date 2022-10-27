@@ -94,6 +94,8 @@ namespace neu {
 		REGISTER_CLASS(CameraComponent);
 
 		REGISTER_CLASS(CameraController);
+
+		REGISTER_CLASS(LightComponent);
 		
 	}
 

@@ -16,7 +16,7 @@ namespace neu {
 
 		void Update() override;
 
-		virtual bool isDead() { if (this == nullptr) return true; }
+		virtual bool isDead() { return (this == nullptr); }
 
 		virtual void ApplyForce(const Vector2& force) { acceleration += force; }
 

@@ -70,6 +70,8 @@
 
 #include "Components/CameraController.h"
 
+#include "Components/LightComponent.h"
+
 #include "Renderer/Renderer.h"
 
 #include "Audio/AudioSystem.h"

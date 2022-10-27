@@ -10,6 +10,6 @@ using namespace neu;
 
 	void ResourceManager::shutDown() {
 
-		m_library.clear();
+		m_resources.clear();
 
 	}

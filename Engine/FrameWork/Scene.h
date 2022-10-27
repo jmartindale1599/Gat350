@@ -38,6 +38,8 @@ namespace neu {
 
 		void Add(std::unique_ptr<Actor> actor);
 
+		bool Create(std::string name, ...);
+
 		void removeAll();
 
 		template<typename T = Actor>
