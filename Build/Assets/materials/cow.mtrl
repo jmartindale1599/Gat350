@@ -1,7 +1,7 @@
 
 {
 
-"program":"shaders/basicLit.prog", 
+"program":"shaders/basicPhong.prog", 
 
 "texture":"textures/spot.png", 
 
@@ -15,6 +15,6 @@
 
    ],
 
-   "shininess": 100
+   "shininess": 512
 
 }

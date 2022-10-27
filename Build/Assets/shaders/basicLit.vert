@@ -14,6 +14,8 @@ struct Light{
 
 	vec3 color;
 
+	vec3 ambient;
+
 	vec4 position;
 
 };
@@ -28,6 +30,8 @@ struct Material{
 
 uniform Light light;
 
+uniform Material material;
+
 uniform mat4 model;
 
 uniform mat4 view;
@@ -37,6 +41,8 @@ uniform mat4 projection;
 void main(){
 
 	textcoord = vtextcoord;
+
+	vec3 ambient = light.ambient * material.color;
 
 	//DIFFUSE
 
@@ -54,7 +60,7 @@ void main(){
 
 	//calculate light direction (unit vector)
 
-	vec3 lightDir = normalize(vec3(light.position - position));
+	vec3 lightDir = normalize(vec3(light.position * material.shinnyness - position));
 
 	//calculate light intensity with dit product (normal * light direction)
 

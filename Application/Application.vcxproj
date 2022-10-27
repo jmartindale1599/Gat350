@@ -153,6 +153,9 @@
     <None Include="..\Build\Assets\shaders\basicLit.frag" />
     <None Include="..\Build\Assets\shaders\basicLit.prog" />
     <None Include="..\Build\Assets\shaders\basicLit.vert" />
+    <None Include="..\Build\Assets\shaders\basicPhong.frag" />
+    <None Include="..\Build\Assets\shaders\basicPhong.prog" />
+    <None Include="..\Build\Assets\shaders\basicPhong.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -59,5 +59,14 @@
     <None Include="..\Build\Assets\scenes\basicLit.scn">
       <Filter>Resource Files\Scenes</Filter>
     </None>
+    <None Include="..\Build\Assets\shaders\basicPhong.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\basicPhong.prog">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\basicPhong.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
