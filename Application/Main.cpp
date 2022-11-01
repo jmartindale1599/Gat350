@@ -26,7 +26,7 @@ int main(int argc, char** argv){
 
 	rapidjson::Document document;
 	
-	std::string workPlz = "scenes/basicLit.scn";
+	std::string workPlz = "scenes/texture.scn";
 
 	bool success = true; // neu::json::Load("scenes/basicLit.scn", document);
 	
@@ -55,9 +55,23 @@ int main(int argc, char** argv){
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape) == neu::InputSystem::State::Pressed) quit = true;
 
 		auto actor = scene->getActorFromName("Spot");
+		
+		auto actor2 = scene->getActorFromName("Scenery");
+
+
 		if (actor){
 
-			actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
+			//actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
+
+		}
+
+		auto material = neu::g_resources.Get<neu::Material>("materials/multi.mtrl");
+
+		if (material) {
+
+			/*material->uv_offset.x += neu::g_time.deltaTime * 0.3f;
+
+			material->uv_offset.y -= neu::g_time.deltaTime * 0.15f;*/
 
 		}
 

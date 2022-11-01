@@ -23,9 +23,9 @@
 
         "scale": [
 
-          0.5,
+          2.5,
 
-          0.5,
+          2.5,
 
           0.5
 
@@ -49,65 +49,9 @@
 
           "type": "ModelComponent",
 
-          "model_name": "models/spot.obj",
+          "model_name": "models/quad.obj",
 
-          "material_name": "materials/cow.mtrl"
-
-        }
-
-      ]
-
-    },
-
-    {
-
-      "type": "Actor",
-
-      "name": "Scenery",
-
-      "transform": {
-
-        "position": [
-
-          -0.2,
-
-          -1,
-
-          0
-
-        ],
-
-        "scale": [
-
-          1,
-
-          1,
-
-          1
-
-        ],
-
-        "rotation": [
-
-          0,
-
-          310,
-
-          0
-
-        ]
-
-      },
-
-      "components": [
-
-        {
-
-          "type": "ModelComponent",
-
-          "model_name": "models/SmallSceneGood.obj",
-
-          "material_name": "materials/scene.mtrl"
+          "material_name": "materials/multi.mtrl"
 
         }
 
@@ -175,9 +119,13 @@
 
         ],
         "rotation": [
+
           0,
+          
           180,
+          
           0
+        
         ]
 
       },
