@@ -36,7 +36,9 @@ uniform Material material;
 
 uniform vec3 tint;
 
-uniform sampler2D texture1;
+layout (binding = 0) uniform sampler2D texture1; //spec
+
+layout (binding = 1) uniform sampler2D texture2; //diffu
 
 void main(){
 
@@ -76,6 +78,8 @@ void main(){
 
 	vec2 ttextcoord = textcoord * material.uv_tiling + material.uv_offset;
 
-	fcolor = vec4(ambient + diffuse, 1) * texture(texture1, ttextcoord) + vec4(specular, 1);
+	vec4 textureColor = mix(texture(texture1, ttextcoord), texture(texture2, ttextcoord), 0.13); 
+
+	fcolor = vec4(ambient + diffuse, 1) * textureColor + vec4(specular, 1) * texture(texture2, ttextcoord);
 
 }

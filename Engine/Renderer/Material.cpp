@@ -33,15 +33,19 @@ namespace neu{
 
 		// read the texture name 
 
-		std::string texture;
+		std::vector<std::string> textures;
 
-		READ_DATA(document, texture);
+		READ_DATA(document, textures);
 
-		if (!texture.empty()){
+		if (!textures.empty()){
 
 			// get texture resource 
 
-			m_textures.push_back(neu::g_resources.Get<neu::Texture>(texture));
+			for (auto texture : textures) {
+
+				m_textures.push_back(neu::g_resources.Get<neu::Texture>(texture));
+
+			}
 		
 		}
 
@@ -73,9 +77,11 @@ namespace neu{
 		
 		m_program->SetUniform("material.uv_offset", uv_offset);
 
-		for (auto& texture : m_textures){
+		for (size_t i = 0; i < m_textures.size(); i++) {
 
-			texture->Bind();
+			m_textures[i]->setActive(GL_TEXTURE0 + (int)i);
+
+			m_textures[i]->Bind();
 		
 		}
 	

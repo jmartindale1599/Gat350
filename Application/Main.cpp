@@ -61,7 +61,9 @@ int main(int argc, char** argv){
 
 		if (actor){
 
-			//actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
+			actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
+
+			actor->m_transform.rotation.x -= neu::g_time.deltaTime * 60.0f;
 
 		}
 
@@ -69,14 +71,13 @@ int main(int argc, char** argv){
 
 		if (material) {
 
-			/*material->uv_offset.x += neu::g_time.deltaTime * 0.3f;
+			material->uv_offset.x += neu::g_time.deltaTime * 0.3f;
 
-			material->uv_offset.y -= neu::g_time.deltaTime * 0.15f;*/
+			material->uv_offset.y -= neu::g_time.deltaTime * 0.15f;
 
 		}
 
 		scene->Update();
-		
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_d) == neu::InputSystem::State::Held){
 

@@ -51,7 +51,7 @@ namespace neu{
 
         }
 
-        FlipSurface(surface);
+        //FlipSurface(surface);
 
         glGenTextures(1, &m_texture);
 

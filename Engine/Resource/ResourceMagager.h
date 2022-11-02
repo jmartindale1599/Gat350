@@ -40,6 +40,8 @@ namespace neu {
 
 	inline std::shared_ptr<T> ResourceManager::Get(const std::string& name, TArgs... args){
 
+		//std::string lowerName = tolower(name);
+
 		if (m_resources.find(name) != m_resources.end()){
 
 			// found 

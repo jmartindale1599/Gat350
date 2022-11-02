@@ -2,7 +2,7 @@
 
   "program": "shaders/texturePhong.prog",
 
-  "texture": "textures/lava.png",
+  "textures": [ "textures/crate.bmp", "textures/crate_specular.bmp" ],
 
   "uv_tiling": [ 1, 1 ],
 
@@ -18,6 +18,6 @@
 
   ],
 
-  "shininess": 512
+  "shininess": 16
 
 }
