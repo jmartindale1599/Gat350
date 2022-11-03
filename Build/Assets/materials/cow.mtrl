@@ -1,20 +1,19 @@
-
 {
 
-"program":"shaders/basicPhong.prog", 
+  "program": "shaders/normalPhong.prog",
 
-"texture":"textures/spot.png", 
+  "textures": [ "textures/ConeColored.jpg", "textures/ConeColoredNormalMap.jpg" ],
 
-"color": [
+  "color": [
 
-     1,
+    1,
 
-     1,
+    1,
 
-     1
+    1
 
-   ],
+  ],
 
-   "shininess": 512
+  "shininess": 512
 
 }

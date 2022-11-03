@@ -19,7 +19,7 @@ namespace neu{
 
 		std::string upper = str;
 		
-		std::transform(upper.begin(), upper.end(), upper.begin(), [](unsigned char c) { return std::toupper(c); });
+		std::transform(upper.begin(), upper.end(), upper.begin(), [](unsigned char c) { return std::toupper(c); }); //AaBb pIzZZa -> aabb pizzza
 	
 		return upper;
 

@@ -60,6 +60,8 @@ namespace neu{
             vertex.position = { mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z };
             
             vertex.normal = { mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z };
+
+            vertex.tangent = { mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z };
             
             if (mesh->mTextureCoords[0]){
 
@@ -84,6 +86,8 @@ namespace neu{
         m_vertexBuffer.SetAttribute(1, 2, sizeof(vertex_t), offsetof(vertex_t, texcoord));
 
         m_vertexBuffer.SetAttribute(2, 3, sizeof(vertex_t), offsetof(vertex_t, normal));
+
+        m_vertexBuffer.SetAttribute(3, 3, sizeof(vertex_t), offsetof(vertex_t, tangent));
 
         // get model index vertices 
         

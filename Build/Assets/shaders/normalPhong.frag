@@ -2,9 +2,9 @@
 
 in vec3 position;
 
-in vec3 normal;
-
 in vec2 textcoord;
+
+in mat3 tbn;
 
 out vec4 fcolor; // pixel to draw
 
@@ -38,7 +38,7 @@ uniform vec3 tint;
 
 layout (binding = 0) uniform sampler2D defuseMap; //spec
 
-layout (binding = 1) uniform sampler2D specMap; //diffu
+layout (binding = 1) uniform sampler2D normalMap; //diffu
 
 void phong(vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out vec3 specular){
 
@@ -78,20 +78,26 @@ void phong(vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out v
 
 void main(){
 
+	vec2 ttextcoord = textcoord * material.uv_tiling + material.uv_offset;
+
 	vec3 ambient;
 
 	vec3 diffuse;
 
 	vec3 specular;
 
+	vec3 normal = texture(normalMap, ttextcoord).rgb; //0 - 1 -> -1 -1
+
+	normal = (normal * 2) - 1; // 0 -> 2 -> -1 -> 1
+
+	normal = normalize(tbn * normal);
+
 	phong(position, normal, ambient,diffuse, specular);
 
 	//color = vec3(0.2) + diffuse + specular;
 
-	vec2 ttextcoord = textcoord * material.uv_tiling + material.uv_offset;
+	vec4 textureColor = texture(defuseMap, textcoord); 
 
-	vec4 textureColor = mix(texture(defuseMap, ttextcoord), texture(specMap, ttextcoord), 0.13); 
-
-	fcolor = vec4(ambient + diffuse, 1) * textureColor + vec4(specular, 1) * texture(specMap, ttextcoord);
+	fcolor = vec4(ambient + diffuse, 1) * textureColor + vec4(specular, 1);
 
 }

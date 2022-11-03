@@ -159,6 +159,9 @@
     <None Include="..\Build\Assets\shaders\basicPhong.frag" />
     <None Include="..\Build\Assets\shaders\basicPhong.prog" />
     <None Include="..\Build\Assets\shaders\basicPhong.vert" />
+    <None Include="..\Build\Assets\shaders\normalPhong.frag" />
+    <None Include="..\Build\Assets\shaders\normalPhong.prog" />
+    <None Include="..\Build\Assets\shaders\normalPhong.vert" />
     <None Include="..\Build\Assets\shaders\texturePhong.frag" />
     <None Include="..\Build\Assets\shaders\texturePhong.prog" />
     <None Include="..\Build\Assets\shaders\texturePhong.vert" />

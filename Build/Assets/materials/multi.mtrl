@@ -2,7 +2,7 @@
 
   "program": "shaders/texturePhong.prog",
 
-  "textures": [ "textures/crate.bmp", "textures/crate_specular.bmp" ],
+  "textures": [ "textures/ConeColored.jpg", "textures/ConeColoredNormalMap.jpg" ],
 
   "uv_tiling": [ 1, 1 ],
 
