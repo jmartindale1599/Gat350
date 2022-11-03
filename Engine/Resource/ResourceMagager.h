@@ -2,6 +2,8 @@
 
 #include "Resource.h"
 
+#include "Core/Utilities.h"
+
 #include <map>
 
 #include <vector>
@@ -42,11 +44,13 @@ namespace neu {
 
 		//std::string lowerName = tolower(name);
 
-		if (m_resources.find(name) != m_resources.end()){
+		std::string lower = ToLower(name);
+
+		if (m_resources.find(lower) != m_resources.end()){
 
 			// found 
 
-			return std::dynamic_pointer_cast<T>(m_resources[name]);
+			return std::dynamic_pointer_cast<T>(m_resources[lower]);
 
 		}else{
 
@@ -54,9 +58,9 @@ namespace neu {
 
 			std::shared_ptr<T> resource = std::make_shared<T>();
 
-			resource->Create(name, args...);
+			resource->Create(lower, args...);
 
-			m_resources[name] = resource;
+			m_resources[lower] = resource;
 
 			return resource;
 
