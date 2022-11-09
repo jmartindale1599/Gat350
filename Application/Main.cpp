@@ -58,10 +58,19 @@ int main(int argc, char** argv){
 		
 		auto actor2 = scene->getActorFromName("Scenery");
 
+		auto actor3 = scene->getActorFromName("Light");
+		
+		if (actor3){
+
+			// move light using sin wave 
+			
+			actor3->m_transform.position.x = std::sin(neu::g_time.time) * 2;
+
+		}
 
 		if (actor){
 
-			actor->m_transform.rotation.y += neu::g_time.deltaTime * 60.0f;
+			//actor->m_transform.rotation.y += neu::g_time.deltaTime * 60.0f;
 
 			//actor->m_transform.rotation.x -= neu::g_time.deltaTime * 60.0f;
 
@@ -78,50 +87,6 @@ int main(int argc, char** argv){
 		}
 
 		scene->Update();
-
-		if (neu::g_inputSystem.GetKeyState(neu::key_d) == neu::InputSystem::State::Held){
-
-			cameraPosition.x -= speed * neu::g_time.deltaTime;
-	
-			//std::string str{ "Camera Position: x:" };
-			
-			//str.append(std::to_string(cameraPosition.x)).append(" y:").append(std::to_string(cameraPosition.y)).append(" z:").append(std::to_string(cameraPosition.z));
-			
-			//LOG(str.c_str());
-		
-		}
-
-		if (neu::g_inputSystem.GetKeyState(neu::key_a) == neu::InputSystem::State::Held) {
-
-			cameraPosition.x += speed * neu::g_time.deltaTime;
-
-		}
-
-		if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::State::Held) {
-
-			cameraPosition.z -= speed * neu::g_time.deltaTime;
-
-		}
-
-		if (neu::g_inputSystem.GetKeyState(neu::key_shift) == neu::InputSystem::State::Held) {
-
-			cameraPosition.z += speed * neu::g_time.deltaTime;
-
-		}
-
-		if (neu::g_inputSystem.GetKeyState(neu::key_w) == neu::InputSystem::State::Held) {
-
-			cameraPosition.y -= speed * neu::g_time.deltaTime;
-
-		}
-
-		if (neu::g_inputSystem.GetKeyState(neu::key_s) == neu::InputSystem::State::Held) {
-
-			cameraPosition.y += speed * neu::g_time.deltaTime;
-
-		}
-
-
 
 		glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
 

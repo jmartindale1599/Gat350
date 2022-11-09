@@ -40,6 +40,8 @@ layout (binding = 0) uniform sampler2D defuseMap; //spec
 
 layout (binding = 1) uniform sampler2D normalMap; //diffu
 
+layout (binding = 2) uniform sampler2D emmisive; //emmisive
+
 void phong(vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out vec3 specular){
 
 	//AMBIENT
@@ -98,6 +100,10 @@ void main(){
 
 	vec4 textureColor = texture(defuseMap, textcoord); 
 
-	fcolor = vec4(ambient + diffuse, 1) * textureColor + vec4(specular, 1);
+	//color = emissive map color + (ambient + diffuse lighting) * diffuse map color + (specular lighting * specular map color)
+
+	//fcolor = emmisive + (ambient + diffuse) * diffuse + (specular * specular);
+
+	fcolor =  vec4(ambient + diffuse, 1) * textureColor + vec4(specular, 1);
 
 }

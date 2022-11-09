@@ -7,7 +7,13 @@ namespace neu{
 
 	public:
 		
-		CLASS_CLONE(LightComponent)
+		CLASS_CLONE(LightComponent);
+
+		enum class lightTypes{
+
+			Point, Directional, Spot
+
+		};
 
 		void Update() override;
 
@@ -19,6 +25,12 @@ namespace neu{
 		
 		glm::vec3 color{ 0 };
 	
+		lightTypes type = lightTypes::Point;
+
+		float cutoff = 45.0f;
+
+		float exponent = 50.0f;
+
 	};
 
 }

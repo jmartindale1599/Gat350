@@ -61,8 +61,16 @@ namespace neu{
             
             vertex.normal = { mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z };
 
+            if (mesh->mTangents) {
+
             vertex.tangent = { mesh->mTangents[i].x, mesh->mTangents[i].y, mesh->mTangents[i].z };
-            
+
+            }else {
+
+                vertex.tangent = { 0,0,0 };
+
+            }
+                    
             if (mesh->mTextureCoords[0]){
 
                 vertex.texcoord = { mesh->mTextureCoords[0][i].x, mesh -> mTextureCoords[0][i].y };

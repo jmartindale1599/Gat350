@@ -71,7 +71,7 @@ namespace neu{
 		
 		m_program->SetUniform("material.color", color);
 
-		m_program->SetUniform("material.shininess", color);
+		m_program->SetUniform("material.shininess", shininess);
 
 		m_program->SetUniform("material.uv_tiling", uv_tiling);
 		

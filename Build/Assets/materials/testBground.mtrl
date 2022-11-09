@@ -1,0 +1,19 @@
+{
+
+  "program": "shaders/texturePhong.prog",
+
+  "textures": [ "textures/crate.bmp", "textures/crate_specular.bmp" ],
+
+  "color": [
+
+    1,
+
+    1,
+
+    1
+
+  ],
+
+  "shininess": 512
+
+}

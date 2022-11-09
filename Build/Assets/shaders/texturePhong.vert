@@ -26,7 +26,7 @@ void main(){
 
 	//transform normals to view space
 
-	normal = mat3(modelView) * vnormal;
+	normal = normalize(mat3(modelView) * vnormal);
 
 	//transform positions to view space
 
