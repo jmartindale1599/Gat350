@@ -147,6 +147,7 @@
     <None Include="..\Build\Assets\materials\cow.mtrl" />
     <None Include="..\Build\Assets\materials\multi.mtrl" />
     <None Include="..\Build\Assets\materials\scene.mtrl" />
+    <None Include="..\Build\Assets\materials\Skull.mtrl" />
     <None Include="..\Build\Assets\scenes\basic.scn" />
     <None Include="..\Build\Assets\scenes\basicLit.scn" />
     <None Include="..\Build\Assets\scenes\texture.scn" />
@@ -159,12 +160,21 @@
     <None Include="..\Build\Assets\shaders\basicPhong.frag" />
     <None Include="..\Build\Assets\shaders\basicPhong.prog" />
     <None Include="..\Build\Assets\shaders\basicPhong.vert" />
-    <None Include="..\Build\Assets\shaders\normalPhong.frag" />
-    <None Include="..\Build\Assets\shaders\normalPhong.prog" />
-    <None Include="..\Build\Assets\shaders\normalPhong.vert" />
-    <None Include="..\Build\Assets\shaders\texturePhong.frag" />
-    <None Include="..\Build\Assets\shaders\texturePhong.prog" />
-    <None Include="..\Build\Assets\shaders\texturePhong.vert" />
+    <None Include="..\Build\Assets\shaders\Fx\toon.frag" />
+    <None Include="..\Build\Assets\shaders\Fx\toon.prog" />
+    <None Include="..\Build\Assets\shaders\Fx\toon.vert" />
+    <None Include="..\Build\Assets\shaders\Lit\normalPhong.frag" />
+    <None Include="..\Build\Assets\shaders\Lit\normalPhong.prog" />
+    <None Include="..\Build\Assets\shaders\Lit\normalPhong.vert" />
+    <None Include="..\Build\Assets\shaders\Lit\texturePhong.frag" />
+    <None Include="..\Build\Assets\shaders\Lit\texturePhong.prog" />
+    <None Include="..\Build\Assets\shaders\Lit\texturePhong.vert" />
+    <None Include="..\Build\Assets\shaders\Unlit\color.frag" />
+    <None Include="..\Build\Assets\shaders\Unlit\color.prog" />
+    <None Include="..\Build\Assets\shaders\Unlit\color.vert" />
+    <None Include="..\Build\Assets\shaders\Unlit\texture.frag" />
+    <None Include="..\Build\Assets\shaders\Unlit\texture.prog" />
+    <None Include="..\Build\Assets\shaders\Unlit\texture.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

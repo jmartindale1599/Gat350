@@ -1,0 +1,19 @@
+{
+
+  "program": "shaders/Lit/normalPhong.prog",
+
+  "textures": [ "textures/Skull.jpg", "textures/SkullNormal.png" ],
+
+  "color": [
+
+    0.4,
+
+    0.35,
+
+    0.2
+
+  ],
+
+  "shininess": 64
+
+}
