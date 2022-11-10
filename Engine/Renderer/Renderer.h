@@ -4,8 +4,6 @@
 
 #include "Math/3X3.h"
 
-//#include "../Renderer/Texture.h"
-
 #include <glad/glad.h>
 
 #include <glm/glm.hpp>
@@ -71,8 +69,10 @@ namespace neu {
 		int GetHeight() { return m_height; }
 
 		friend class Text;
-
+		
 		friend class Texture;
+
+		friend class GUI;
 
 	private:
 

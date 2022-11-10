@@ -6,6 +6,8 @@
 
 #include "Model.h"
 
+#include "Renderer/GUI.h"
+
 #include "Core/Memory.h"
 
 #include "Core/Time.h"
@@ -27,6 +29,8 @@
 #include "FrameWork/Factory.h"
 
 #include "FrameWork/EventManager.h"
+
+#include "Renderer/Renderer.h"
 
 #include "Renderer/Font.h"
 
@@ -72,8 +76,6 @@
 
 #include "Components/LightComponent.h"
 
-#include "Renderer/Renderer.h"
-
 #include "Audio/AudioSystem.h"
 
 #include "Resource/ResourceMagager.h"
@@ -101,6 +103,8 @@ namespace neu {
 	extern Scene g_scene;
 
 	extern AudioSystem g_audio;
+
+	extern GUI g_gui;
 
 	extern ResourceManager g_resources;
 

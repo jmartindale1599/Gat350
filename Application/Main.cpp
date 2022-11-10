@@ -20,6 +20,8 @@ int main(int argc, char** argv){
 
 	LOG("Window Initialized . . .");
 
+	neu::g_gui.Initialize(neu::g_renderer);
+
 	// load scene 
 
 	auto scene = std::make_unique<neu::Scene>();
@@ -48,9 +50,15 @@ int main(int argc, char** argv){
 
 	float speed = 3;
 
+	glm::vec3 pos{ 0,0,0 };
+
+	float x = 0;
+
 	while (!quit){
 
 		neu::Engine::Instance().Update();
+
+		neu::g_gui.BeginFrame(neu::g_renderer);
 
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape) == neu::InputSystem::State::Pressed) quit = true;
 
@@ -72,19 +80,19 @@ int main(int argc, char** argv){
 
 			//actor->m_transform.rotation.y += neu::g_time.deltaTime * 60.0f;
 
-			//actor->m_transform.rotation.x -= neu::g_time.deltaTime * 60.0f;
+			actor->m_transform.rotation.x -= x;
 
 		}
 
 		auto material = neu::g_resources.Get<neu::Material>("materials/multi.mtrl");
 
-		if (material) {
+		ImGui::Begin("Hello");
 
-		/*	material->uv_offset.x += neu::g_time.deltaTime * 0.3f;
+		ImGui::Button("Press ME");
 
-			material->uv_offset.y -= neu::g_time.deltaTime * 0.15f;*/
+		ImGui::SliderFloat("X", &pos.x, -5.0f, 5.0f);
 
-		}
+		ImGui::End();
 
 		scene->Update();
 
@@ -94,7 +102,11 @@ int main(int argc, char** argv){
 
 		scene->Draw(neu::g_renderer);
 
+		neu::g_gui.Draw();
+
 		neu::g_renderer.EndFrame();
+
+		neu::g_gui.EndFrame();
 	
 	}
 

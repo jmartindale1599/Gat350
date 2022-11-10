@@ -17,6 +17,8 @@ namespace neu {
 
 	PhysicsSystem g_physicsSystem;
 
+	GUI g_gui;
+
 	EventManager g_eventManager;
 
 	void Engine::Initialize(){
@@ -37,6 +39,14 @@ namespace neu {
 
 	void Engine::Update(){
 
+		SDL_Event event;
+
+		while(SDL_PollEvent(&event)){
+
+			g_gui.Update(event);
+
+		}
+		
 		g_time.Tick();
 		
 		g_eventManager.Update();
@@ -44,9 +54,9 @@ namespace neu {
 		g_physicsSystem.Update();
 		
 		g_inputSystem.Update();
-		
+
 		g_audio.Update();
-	
+				
 	}
 
 	void Engine::Shutdown(){
@@ -61,6 +71,8 @@ namespace neu {
 		
 		g_inputSystem.Shutdown();
 		
+		g_gui.Shutdown();
+
 		g_audio.Shutdown();
 		
 		g_renderer.Shutdown();
