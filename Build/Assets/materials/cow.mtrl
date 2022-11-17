@@ -1,6 +1,6 @@
 {
 
-  "program": "shaders/Lit/normalPhong.prog",
+  "program": "shaders/Lit/texturePhong.prog",
 
   "textures": [ "textures/ConeColored.jpg", "textures/ConeColoredNormalMap.jpg" ],
 

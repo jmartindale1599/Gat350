@@ -2,6 +2,8 @@
 
 #include "Actor.h"
 
+#include "Resource/Resource.h"
+
 #include <list>
 
 #include <memory>
@@ -34,7 +36,9 @@ namespace neu {
 
 		void Initialize() override;
 
-		void Draw(Renderer& renderer);
+		void PreRender(Renderer& renderer);
+
+		void Render(Renderer& renderer);
 
 		void Add(std::unique_ptr<Actor> actor);
 

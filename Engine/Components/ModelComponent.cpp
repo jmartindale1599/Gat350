@@ -14,10 +14,6 @@ void neu::ModelComponent::Draw(Renderer& renderer){
 		
 	material->GetProgram() -> SetUniform("model", (glm::mat4)m_owner->m_transform);
 
-	material->GetProgram() -> SetUniform("view", renderer.getView());
-
-	material->GetProgram() -> SetUniform("projection", renderer.getProjection());
-
 	model->m_vertexBuffer.Draw();
 
 }

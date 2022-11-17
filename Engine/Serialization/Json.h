@@ -10,6 +10,8 @@
 
 #define READ_DATA(value, data) neu::json::Get(value, #data, data)
 
+#define READ_NAME_DATA(value, name, data) neu::json::Get(value, name, data) 
+
 namespace neu{
 
 	struct Vector2;

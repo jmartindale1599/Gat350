@@ -4,14 +4,17 @@
 
 namespace neu{
 
-	class CameraComponent : public Component{
+	class Program;
 
+	class CameraComponent : public Component{
+				
 	public:
 		
 		CLASS_CLONE(CameraComponent)
 
 		void Update() override;
 
+		void SetProgram(std::shared_ptr<Program> program);
 
 		void SetPerspective(float fov, float aspectRatio, float near, float far);
 

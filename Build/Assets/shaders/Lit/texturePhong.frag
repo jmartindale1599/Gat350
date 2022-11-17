@@ -6,6 +6,8 @@
 
 #define SPOTLIGHT 2 
 
+#define MAX_LIGHTS 5
+
 in vec3 position;
 
 in vec3 normal;
@@ -14,11 +16,9 @@ in vec2 textcoord;
 
 out vec4 fcolor; // pixel to draw
 
-struct Light{
+uniform struct Light{
 
 	int type; 
-
-	vec3 ambient;
 
 	vec3 color;
 
@@ -30,7 +30,7 @@ struct Light{
 
 	float exponent; 
 
-};
+}lights[MAX_LIGHTS];
 
 struct Material{
 
@@ -44,6 +44,10 @@ struct Material{
 
 };
 
+uniform int light_count;
+
+uniform vec3 ambient_color;
+
 uniform Light light;
 
 uniform Material material;
@@ -54,93 +58,92 @@ layout (binding = 0) uniform sampler2D defuseMap; //defuse
 
 //layout (binding = 1) uniform sampler2D specMap; //spec
 
-void phong(vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out vec3 specular){
+void phong(Light light, vec3 position, vec3 normal, out vec3 diffuse, out vec3 specular){ 
 
-	// direction vector to light
+ // direction vector to light 
 
-	// calculate light direction (unit vector)
+ // calculate light direction (unit vector) 
 
-	vec3 light_dir = (light.type == DIRECTIONAL) ? normalize(-light.direction) : normalize(vec3(light.position) - position);
+ vec3 light_dir = (light.type == DIRECTIONAL) ? normalize(-light.direction) : normalize(vec3(light.position) - position); 
+  
+ // if spotlight, compute intensity based on angle to cutoff 
+
+ float spot_intensity = 1; 
+
+ if (light.type == SPOTLIGHT){
  
-	// if spotlight, compute intensity based on angle to cutoff
-
-	float spot_intensity = 1;
-
-	if (light.type == SPOTLIGHT){
-
-		// get cosine of light direction and direction vector from light
-	
-	float cosine = dot(light.direction, -light_dir);
-	
-	// get angle
-	
-	float angle = acos(cosine);
+  // get cosine of light direction and direction vector from light 
  
-	
-	// if inside of cutoff, set spot intensity
-	
-	spot_intensity = (angle < light.cutoff) ? pow(cosine, light.exponent) : 0;
-	
-	}
+ float cosine = dot(light.direction, -light_dir); 
  
-	// AMBIENT
-	
-	ambient = light.ambient * material.color;
+ // get angle 
  
-	// DIFFUSE
-	
-	// calculate light intensity with dot product (normal * light direction)
-	
-	float intensity = max(dot(light_dir, normal), 0) * spot_intensity;
-	
-	// calculate diffuse color
-	
-	diffuse = light.color * material.color * intensity;
+ float angle = acos(cosine); 
+  
+  // if inside of cutoff, set spot intensity 
  
-	// SPECULAR
-	
-	specular = vec3(0);
-	
-	if (intensity > 0){
-
-		// calculate reflection vector 
-	
-	// light direction reflected around normal vector [ \|/ ]
-	
-	vec3 reflection = reflect(-light_dir, normal);
-	
-	// create direction vector from eye (origin) to vertex position
-	
-	vec3 view_dir = normalize(-vec3(position));
-	
-	// calculate light intensity with dot production (reflection * view direction)
-	
-	intensity = max(dot(reflection, view_dir), 0);
-		
-	intensity = pow(intensity, material.shininess);
-	
-	// calculate specular color
-	
-	specular = light.color * material.color * intensity;
-	
-	}
-
-}
-
-void main(){
-
-	vec3 ambient;
-
-	vec3 diffuse;
-
-	vec3 specular;
+ spot_intensity = (angle < light.cutoff) ? pow(cosine, light.exponent) : 0; 
  
-	phong(position, normal, ambient, diffuse, specular);
+ } 
+  
+ // DIFFUSE 
  
-	vec2 ttexcoord = (textcoord * material.uv_tiling) + material.uv_offset;
-
-	vec4 texture_color = texture(defuseMap, ttexcoord);
+ // calculate light intensity with dot product (normal * light direction) 
  
-	fcolor = vec4(ambient + diffuse, 1) * texture_color + vec4(specular, 1);
+ float intensity = max(dot(light_dir, normal), 0) * spot_intensity; 
+ 
+ // calculate diffuse color 
+ 
+ diffuse = light.color * material.color * intensity; 
+  
+ // SPECULAR 
+ 
+ specular = vec3(0); 
+ 
+ if (intensity > 0) {
+ 
+  // calculate reflection vector  
+ 
+ // light direction reflected around normal vector [ \|/ ] 
+ 
+ vec3 reflection = reflect(-light_dir, normal); 
+ 
+ // create direction vector from eye (origin) to vertex position 
+ 
+ vec3 view_dir = normalize(-vec3(position)); 
+ 
+ // calculate light intensity with dot production (reflection * view direction) 
+ 
+ intensity = max(dot(reflection, view_dir), 0); 
+ 
+ intensity = pow(intensity, material.shininess); 
+ 
+ // calculate specular color 
+ 
+ specular = light.color * material.color * intensity; 
+ 
+ } 
 
+} 
+  
+void main(){ 
+
+	// initialize color with ambient color 
+
+	fcolor = vec4(ambient_color, 1) * texture(defuseMap, textcoord); 
+  
+	// calculate phong (diffuse, specular) for each light and add to color 
+
+	for (int i = 0; i < light_count; i++) { 
+	
+	vec3 diffuse; 
+
+	vec3 specular; 
+  
+	phong(lights[i], position, normal, diffuse, specular); 
+
+	fcolor += (vec4(diffuse, 1) * texture(defuseMap, textcoord)) + vec4(specular,1);
+ 
+	} 
+ 
 }

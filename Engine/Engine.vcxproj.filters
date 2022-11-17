@@ -351,9 +351,6 @@
     <ClInclude Include="FrameWork\Event.h">
       <Filter>Sources\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="FrameWork\EventManager.h">
-      <Filter>Sources\FrameWork</Filter>
-    </ClInclude>
     <ClInclude Include="Components\CharacterComponent.h">
       <Filter>Sources\Components</Filter>
     </ClInclude>
@@ -409,6 +406,9 @@
       <Filter>Sources\External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\GUI.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\EventManager.h">
       <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>

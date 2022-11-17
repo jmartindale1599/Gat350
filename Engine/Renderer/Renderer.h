@@ -62,7 +62,7 @@ namespace neu {
 
 		void setProjection(const glm::mat4& projection) { m_projection = projection; }
 
-		void SetClearColor(const Color& color) { m_clearColor = color; }
+		void SetClearColor(const Color& color) { clear_color = glm::vec3(color.r, color.g, color.b); }
 
 		int GetWidth() { return m_width; }
 
@@ -73,6 +73,10 @@ namespace neu {
 		friend class Texture;
 
 		friend class GUI;
+
+		glm::vec3 clear_color{ 0.3, 0, 0.3 };
+
+		glm::vec3 ambient_color{ 0, 0, 0 };
 
 	private:
 
@@ -89,8 +93,6 @@ namespace neu {
 		SDL_Window* m_window = nullptr;
 
 		SDL_GLContext m_context;
-
-		Color m_clearColor{ 0,0,0,255 };
 
 	};
 

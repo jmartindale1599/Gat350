@@ -129,7 +129,7 @@ namespace neu{
 
 	}
 
-	void Program::SetUniform(const std::string & name, const glm::vec3 & value){
+	void Program::SetUniform(const std::string &name, const glm::vec3 & value){
 
 		GLint uniform = GetUniform(name);
 
@@ -210,6 +210,7 @@ namespace neu{
 			if (location == -1){
 
 				LOG("Could not find uniform location: %s", name.c_str());
+				//__debugbreak();
 
 			}
 
