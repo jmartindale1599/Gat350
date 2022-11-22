@@ -149,5 +149,29 @@
     <None Include="..\Build\Assets\shaders\Fx\skybox.prog">
       <Filter>Resource Files\Shaders\Fx</Filter>
     </None>
+    <None Include="..\Build\Assets\shaders\Fx\reflection.vert">
+      <Filter>Resource Files\Shaders\Fx</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\Fx\reflection.frag">
+      <Filter>Resource Files\Shaders\Fx</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\Fx\reflection.prog">
+      <Filter>Resource Files\Shaders\Fx</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\reflection.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\Fx\refrac.frag">
+      <Filter>Resource Files\Shaders\Fx</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\Fx\refrac.prog">
+      <Filter>Resource Files\Shaders\Fx</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\Fx\refrac.vert">
+      <Filter>Resource Files\Shaders\Fx</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\refrac.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
   </ItemGroup>
 </Project>

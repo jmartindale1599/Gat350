@@ -146,6 +146,8 @@
     <None Include="..\Build\Assets\materials\box.mtrl" />
     <None Include="..\Build\Assets\materials\cow.mtrl" />
     <None Include="..\Build\Assets\materials\multi.mtrl" />
+    <None Include="..\Build\Assets\materials\reflection.mtrl" />
+    <None Include="..\Build\Assets\materials\refrac.mtrl" />
     <None Include="..\Build\Assets\materials\scene.mtrl" />
     <None Include="..\Build\Assets\materials\Skull.mtrl" />
     <None Include="..\Build\Assets\materials\skybox.mtrl" />
@@ -162,6 +164,12 @@
     <None Include="..\Build\Assets\shaders\basicPhong.frag" />
     <None Include="..\Build\Assets\shaders\basicPhong.prog" />
     <None Include="..\Build\Assets\shaders\basicPhong.vert" />
+    <None Include="..\Build\Assets\shaders\Fx\reflection.frag" />
+    <None Include="..\Build\Assets\shaders\Fx\reflection.prog" />
+    <None Include="..\Build\Assets\shaders\Fx\reflection.vert" />
+    <None Include="..\Build\Assets\shaders\Fx\refrac.frag" />
+    <None Include="..\Build\Assets\shaders\Fx\refrac.prog" />
+    <None Include="..\Build\Assets\shaders\Fx\refrac.vert" />
     <None Include="..\Build\Assets\shaders\Fx\skybox.frag" />
     <None Include="..\Build\Assets\shaders\Fx\skybox.prog" />
     <None Include="..\Build\Assets\shaders\Fx\skybox.vert" />

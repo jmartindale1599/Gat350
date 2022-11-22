@@ -12,6 +12,8 @@
 
       "name": "Skybox",
 
+      "active":  true,
+
       "components": [
 
         {
@@ -20,7 +22,9 @@
 
           "model_name": "models/cube.obj",
 
-          "material_name": "materials/skybox.mtrl"
+          "material_name": "materials/skybox.mtrl",
+
+          "depth_test":  false
 
         }
 
@@ -76,7 +80,7 @@
 
           "model_name": "models/skull.glb",
 
-          "material_name": "materials/skull.mtrl"
+          "material_name": "materials/refrac.mtrl"
 
         }
 

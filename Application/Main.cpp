@@ -52,6 +52,8 @@ int main(int argc, char** argv){
 
 	glm::vec3 rot{ 0,0,0 };
 
+	float ri = 1;
+
 	float x = 0;
 
 	while (!quit){
@@ -86,9 +88,21 @@ int main(int argc, char** argv){
 
 		auto material = neu::g_resources.Get<neu::Material>("materials/multi.mtrl");
 
+		auto program = neu::g_resources.Get<neu::Program>("shaders/Fx/refrac.prog");
+
+		if(program){ 
+
+			program->Use();
+		
+			program->SetUniform("ri", ri);
+		
+		}
+
 		ImGui::Begin("Transform");
 
-		ImGui::SliderFloat3("Rotation", &rot[0], -360.0f, 360.0f);
+		ImGui::DragFloat3("Rotation", &rot[0]);
+
+		ImGui::DragFloat("Refraction index", &ri, 0.01f, 0, 3);
 
 		ImGui::End();
 
