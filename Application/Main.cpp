@@ -30,13 +30,6 @@ int main(int argc, char** argv){
 	
 	std::string workPlz = "scenes/cubemap.scn";
 
-	/// <summary>
-	/// Got to 46:54 tuesday lecture Vid
-	/// </summary>
-	/// <param name="argc"></param>
-	/// <param name="argv"></param>
-	/// <returns></returns>
-
 	bool success = true; // neu::json::Load("scenes/basicLit.scn", document);
 	
 	if (!success){
@@ -57,7 +50,7 @@ int main(int argc, char** argv){
 
 	float speed = 3;
 
-	glm::vec3 pos{ 0,0,0 };
+	glm::vec3 rot{ 0,0,0 };
 
 	float x = 0;
 
@@ -69,17 +62,17 @@ int main(int argc, char** argv){
 
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape) == neu::InputSystem::State::Pressed) quit = true;
 
-		auto actor = scene->getActorFromName("Spot");
+		auto actor = scene->getActorFromName("Model");
 		
 		auto actor2 = scene->getActorFromName("Scenery");
 
 		auto actor3 = scene->getActorFromName("Light");
 		
-		if (actor3){
+		if (actor){
 
 			// move light using sin wave 
-			
-			actor3->m_transform.position.x = std::sin(neu::g_time.time) * 2;
+
+			actor->m_transform.rotation = Math::EulerToQuaternion(rot);
 
 		}
 
@@ -87,17 +80,15 @@ int main(int argc, char** argv){
 
 			//actor->m_transform.rotation.y += neu::g_time.deltaTime * 60.0f;
 
-			actor->m_transform.rotation.x -= x;
+			//actor->m_transform.rotation.x -= x;
 
 		}
 
 		auto material = neu::g_resources.Get<neu::Material>("materials/multi.mtrl");
 
-		ImGui::Begin("Hello");
+		ImGui::Begin("Transform");
 
-		ImGui::Button("Press ME");
-
-		ImGui::SliderFloat("X", &pos.x, -5.0f, 5.0f);
+		ImGui::SliderFloat3("Rotation", &rot[0], -360.0f, 360.0f);
 
 		ImGui::End();
 

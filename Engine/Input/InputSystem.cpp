@@ -60,21 +60,20 @@ namespace neu {
 
 		std::copy(keyboardState, keyboardState + m_numKeys, m_keyboardState.begin());
 
-		//std::cout << (bool)m_keyboardState[SDL_SCANCODE_W] << std::endl;
-
-		//for (auto state : m_keyboardState) {
-
-		//	std::cout << (bool)state << std::endl;
-
-		//}
-
-		m_prevMouseButtonState = m_mouseButtonState;
+		//mouse
 
 		int x, y;
 
 		uint32_t buttons = SDL_GetMouseState(&x, &y);
 
-		m_mousePosition = neu::Vector2{ x , y };
+		m_mousePosition = glm::vec2{ (float)x, (float)y };
+
+		m_mouseRelative = m_mousePosition - m_prevMousePosition;
+
+		m_prevMousePosition = m_mousePosition;
+
+		m_prevMouseButtonState = m_mouseButtonState;
+
 
 		m_mouseButtonState[0] = buttons & SDL_BUTTON_LMASK; // buttons [0001] & [0RML] 
 

@@ -208,6 +208,7 @@
     <ClCompile Include="Renderer\CubemapTexture.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Math\MathUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Memory.h">

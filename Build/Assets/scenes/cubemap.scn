@@ -27,11 +27,12 @@
       ]
 
     },
+
     {
 
       "type": "Actor",
 
-      "name": "Spot",
+      "name": "Model",
 
       "transform": {
 
