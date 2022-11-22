@@ -42,6 +42,8 @@
 
 #include "Renderer/CubemapTexture.h"
 
+#include "Renderer/FrameBuffer.h"
+
 #include "Renderer/Program.h"
 
 #include "Renderer/Material.h"

@@ -22,13 +22,27 @@ int main(int argc, char** argv){
 
 	neu::g_gui.Initialize(neu::g_renderer);
 
+	//create frameBuffer texture
+
+	auto texture = std::make_shared<neu::Texture>();
+
+	texture->CreateTexture(512, 512);
+
+	neu::g_resources.add<neu::Texture>("fb_texture", texture);
+
+	//create frameBuffer
+
+	auto framebuffer = neu::g_resources.Get<neu::Framebuffer>("framebuffer", "fb_texture");
+
+	framebuffer->Unbind();
+
 	// load scene 
 
 	auto scene = std::make_unique<neu::Scene>();
 
 	rapidjson::Document document;
 	
-	std::string workPlz = "scenes/cubemap.scn";
+	std::string workPlz = "scenes/rtt.scn";
 
 	bool success = true; // neu::json::Load("scenes/basicLit.scn", document);
 	
@@ -52,7 +66,9 @@ int main(int argc, char** argv){
 
 	glm::vec3 rot{ 0,0,0 };
 
-	float ri = 1;
+	float interpolation = 1;
+
+	float refractionIndex = 1;
 
 	float x = 0;
 
@@ -69,20 +85,14 @@ int main(int argc, char** argv){
 		auto actor2 = scene->getActorFromName("Scenery");
 
 		auto actor3 = scene->getActorFromName("Light");
+
+		auto actor4 = scene->getActorFromName("Skybox");
 		
 		if (actor){
 
 			// move light using sin wave 
 
 			actor->m_transform.rotation = Math::EulerToQuaternion(rot);
-
-		}
-
-		if (actor){
-
-			//actor->m_transform.rotation.y += neu::g_time.deltaTime * 60.0f;
-
-			//actor->m_transform.rotation.x -= x;
 
 		}
 
@@ -94,7 +104,9 @@ int main(int argc, char** argv){
 
 			program->Use();
 		
-			program->SetUniform("ri", ri);
+			program->SetUniform("i", interpolation);
+
+			program->SetUniform("ri", refractionIndex);
 		
 		}
 
@@ -102,13 +114,55 @@ int main(int argc, char** argv){
 
 		ImGui::DragFloat3("Rotation", &rot[0]);
 
-		ImGui::DragFloat("Refraction index", &ri, 0.01f, 0, 3);
+		ImGui::DragFloat("Refraction index", &interpolation, 0.01f, 0, 1);
+
+		ImGui::DragFloat("Refraction index", &refractionIndex, 0.05f, 1, 3.2);
 
 		ImGui::End();
 
 		scene->Update();
 
 		glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
+
+		{
+			auto actor = scene->getActorFromName("RTT");
+			
+			if (actor){
+			
+				actor->setActive(false);
+			
+			}
+
+		}
+
+		//render pass 1 to frame buffer
+
+		glViewport(0, 0, 512, 512);
+
+		framebuffer->Bind();
+
+		neu::g_renderer.BeginFrame();
+
+		scene->PreRender(neu::g_renderer);
+
+		scene->Render(neu::g_renderer);
+
+		framebuffer->Unbind();
+
+		{
+			auto actor = scene->getActorFromName("RTT");
+
+			if (actor) {
+
+				actor->setActive(true);
+
+			}
+
+		}
+
+		//render pass 2 to screen
+
+		glViewport(0, 0, 800, 600);
 
 		neu::g_renderer.BeginFrame();
 

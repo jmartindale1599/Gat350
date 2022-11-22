@@ -1,6 +1,6 @@
 {
 
-  "program": "shaders/Fx/refraf.prog",
+  "program": "shaders/Fx/refrac.prog",
 
   "cubemap": "textures/Storforsen/",
   

@@ -78,7 +78,7 @@ void neu::SpriteAnimeComponent::SetSequence(const std::string& name){
 
 neu::Rect& neu::SpriteAnimeComponent::GetSource(){
 
-    Vector2 cellSize = m_sequence->texture->GetSize() / Vector2{ m_sequence->num_columns, m_sequence->num_rows };
+    /*glm::vec2 cellSize = m_sequence->texture->GetSize() / glm::vec2{ m_sequence->num_columns, m_sequence->num_rows };
 
     int column = (frame - 1) % m_sequence->num_columns;
     
@@ -92,7 +92,10 @@ neu::Rect& neu::SpriteAnimeComponent::GetSource(){
     
     source.h = (int)(cellSize.y);
 
+    return source;*/
+
     return source;
+
 }
 
 bool neu::SpriteAnimeComponent::Write(const rapidjson::Value& value) const{

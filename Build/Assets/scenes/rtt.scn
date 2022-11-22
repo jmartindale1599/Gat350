@@ -92,6 +92,52 @@
 
       "type": "Actor",
 
+      "name": "RTT",
+
+      "transform": {
+
+        "position": [
+
+          3,
+
+          2,
+
+          0
+
+        ],
+
+        "scale": [
+
+          2,
+
+          2,
+
+          2
+
+        ]
+
+      },
+
+      "components": [
+
+        {
+
+          "type": "ModelComponent",
+
+          "model_name": "models/quad.obj",
+
+          "material_name": "materials/RTT.mtrl"
+
+        }
+
+      ]
+
+    },
+
+    {
+
+      "type": "Actor",
+
       "name": "Light",
 
       "transform": {

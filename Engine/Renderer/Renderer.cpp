@@ -90,7 +90,7 @@ namespace neu{
 
 	void Renderer::Draw(std::shared_ptr<Texture> texture, const Vector2& position, float rotation, const Vector2& scale, const Vector2& registration){
 
-		Vector2 size = texture->GetSize();
+		/*glm::vec2 size = texture->GetSize();
 
 		size = size * scale;
 
@@ -108,7 +108,7 @@ namespace neu{
 			
 		dest.h = (int)size.y;
 
-		SDL_Point center{ (int)origin.x , (int)origin.y};
+		SDL_Point center{ (int)origin.x , (int)origin.y};*/
 
 		//SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, rotation, &center, SDL_FLIP_NONE);
 
@@ -182,17 +182,17 @@ namespace neu{
 
 	void Renderer::DrawLine(float x1, float y1, float x2, float y2){
 
-		SDL_SetRenderDrawColor(m_renderer, 253, 184, 39, 255);
+		/*SDL_SetRenderDrawColor(m_renderer, 253, 184, 39, 255);
 
-		SDL_RenderDrawLineF(m_renderer, x1, y1, x2, y2);
+		SDL_RenderDrawLineF(m_renderer, x1, y1, x2, y2);*/
 
 	}
 
 	void Renderer::DrawLine(const Vector2& v1, const Vector2& v2, const Color& color){
 
-		SDL_SetRenderDrawColor(m_renderer, color.r, color.g, color.b, color.a);
+		/*SDL_SetRenderDrawColor(m_renderer, color.r, color.g, color.b, color.a);
 
-		SDL_RenderDrawLineF(m_renderer, v1.x, v1.y, v2.x, v2.y);
+		SDL_RenderDrawLineF(m_renderer, v1.x, v1.y, v2.x, v2.y);*/
 
 	}
 

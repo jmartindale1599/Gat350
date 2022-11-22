@@ -173,5 +173,23 @@
     <None Include="..\Build\Assets\materials\refrac.mtrl">
       <Filter>Resource Files\Materiels</Filter>
     </None>
+    <None Include="..\Build\Assets\shaders\Fx\refraf.frag">
+      <Filter>Resource Files\Shaders\Fx</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\Fx\refraf.prog">
+      <Filter>Resource Files\Shaders\Fx</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\Fx\refraf.vert">
+      <Filter>Resource Files\Shaders\Fx</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\refraf.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
+    <None Include="..\Build\Assets\scenes\rtt.scn">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\RTT.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -209,6 +209,9 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Math\MathUtils.cpp" />
+    <ClCompile Include="Renderer\FrameBuffer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Memory.h">
@@ -416,6 +419,9 @@
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\CubemapTexture.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\FrameBuffer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
