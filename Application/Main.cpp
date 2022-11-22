@@ -28,7 +28,14 @@ int main(int argc, char** argv){
 
 	rapidjson::Document document;
 	
-	std::string workPlz = "scenes/texture.scn";
+	std::string workPlz = "scenes/cubemap.scn";
+
+	/// <summary>
+	/// Got to 46:54 tuesday lecture Vid
+	/// </summary>
+	/// <param name="argc"></param>
+	/// <param name="argv"></param>
+	/// <returns></returns>
 
 	bool success = true; // neu::json::Load("scenes/basicLit.scn", document);
 	

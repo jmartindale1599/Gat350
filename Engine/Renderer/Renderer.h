@@ -74,9 +74,9 @@ namespace neu {
 
 		friend class GUI;
 
-		glm::vec3 clear_color{ 0.3, 0, 0.3 };
+		glm::vec3 ambient_color{ 0.3, 0, 0.3 };
 
-		glm::vec3 ambient_color{ 0, 0, 0 };
+		glm::vec3 clear_color{ 0, 0, 0 };
 
 	private:
 

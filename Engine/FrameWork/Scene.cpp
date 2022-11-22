@@ -51,20 +51,22 @@ namespace neu {
 
 		for (auto& actor : m_actors){
 
-			if (actor->isActive() == false){
+			//< if actor is active is false, continue; (skips rest of for code) >
+			
+			if (!actor->isActive()){
 
 				continue;
 
 			}
 
 			auto component = actor->GetComponent<CameraComponent>();
-			
-			if(component){
 
-				camera = component;
-					
-				break;
-			
+			if (component != nullptr){
+
+				camera = component; //<set camera to component>
+
+				break; //<break out of for loop>
+
 			}
 
 		}
@@ -74,45 +76,37 @@ namespace neu {
 		std::vector<LightComponent*> lights;
 
 		for (auto& actor : m_actors){
-
-			if (actor->isActive() == false) {
-
-				continue;
-
-			}
+			
+			//< if actor is active is false, continue; (skips rest of for code) >
+			
+			if (!actor->isActive()) continue;
 
 			auto component = actor->GetComponent<LightComponent>();
 			
-			if(component){
-
-				lights.push_back(component);
+			if (component != nullptr){//<component not null>
+				
+				lights.push_back(component); //<add(push back) component to lights vector>
 			
 			}
-
+		
 		}
 
 		// get all shader programs in the resource system 
-
+		
 		auto programs = g_resources.Get<Program>();
-
+		
 		// set all shader programs camera and lights uniforms 
-
+		
 		for (auto& program : programs){
-
+			
 			// set camera in shader program 
-
-			if (camera == nullptr)
-			{
-				LOG("Camera was not found.");
-				__debugbreak();
-			}
-
+			
 			camera->SetProgram(program);
 
 			// set lights in shader program 
-
+			
 			int index = 0;
-
+		
 			for (auto light : lights){
 
 				light->SetProgram(program, index++);
@@ -120,7 +114,7 @@ namespace neu {
 			}
 
 			program->SetUniform("light_count", index);
-
+			
 			program->SetUniform("ambient_color", g_renderer.ambient_color);
 
 		}

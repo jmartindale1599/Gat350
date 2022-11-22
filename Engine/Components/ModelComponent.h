@@ -28,6 +28,8 @@ namespace neu {
 
 		std::shared_ptr<Material> material;
 
+		bool depth_test = true;
+
 	};
 
 }

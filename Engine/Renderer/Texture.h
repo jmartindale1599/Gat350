@@ -30,9 +30,9 @@ namespace neu{
 
 		bool Create(std::string filename, ...) override;
 		 
-		bool Create(Renderer& renderer, const std::string& filename);
-
 		bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
+
+		bool Load(const std::string& filename);
 
 		void setActive(GLuint unit) { glActiveTexture(unit); }
 
@@ -40,11 +40,11 @@ namespace neu{
 
 		Vector2 GetSize() const;
 
+		static GLenum GetInternalFormat(GLuint format);
+
 		friend class Renderer;
 
-	private:
-
-		//SDL_Texture* m_texture = nullptr;
+	protected:
 
 		void FlipSurface(SDL_Surface* surface);
 

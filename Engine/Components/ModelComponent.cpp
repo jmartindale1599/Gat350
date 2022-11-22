@@ -14,6 +14,8 @@ void neu::ModelComponent::Draw(Renderer& renderer){
 		
 	material->GetProgram() -> SetUniform("model", (glm::mat4)m_owner->m_transform);
 
+	glDepthMask(depth_test);
+
 	model->m_vertexBuffer.Draw();
 
 }
@@ -37,6 +39,8 @@ bool neu::ModelComponent::Read(const rapidjson::Value& value){
 	model = g_resources.Get<Model>(model_name);
 
 	material = g_resources.Get<Material>(material_name);
+
+	READ_DATA(value, depth_test);
 
 	return true;
 

@@ -205,6 +205,9 @@
     <ClCompile Include="Renderer\GUI.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\CubemapTexture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Memory.h">
@@ -409,6 +412,9 @@
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\EventManager.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\CubemapTexture.h">
       <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
