@@ -12,7 +12,7 @@
 
       "name": "Skybox",
 
-      "active":  true,
+      "active": true,
 
       "components": [
 
@@ -24,7 +24,7 @@
 
           "material_name": "materials/skybox.mtrl",
 
-          "depth_test":  false
+          "depth_test": false
 
         }
 
@@ -91,48 +91,50 @@
     {
 
       "type": "Actor",
-
-      "name": "RTT",
-
+      
+      "name": "PostProcess",
+      
       "transform": {
-
+      
         "position": [
-
-          3,
-
+        
           2,
-
+          
+          2,
+          
           0
-
+        
         ],
-
+        
         "scale": [
-
-          2,
-
-          2,
-
-          2
-
+          
+          1,
+        
+          1,
+          
+          1
+        
         ]
-
+      
       },
-
+      
       "components": [
-
+      
         {
-
+        
           "type": "ModelComponent",
-
-          "model_name": "models/quad.obj",
-
-          "material_name": "materials/RTT.mtrl"
-
+          
+          "model_name": "Models/quad.obj",
+          
+          "material_name": "Materials/postprocess.mtrl"
+        
         }
-
+      
       ]
-
+    
     },
+
+    
 
     {
 

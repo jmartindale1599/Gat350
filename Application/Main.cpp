@@ -2,6 +2,8 @@
 
 #include <iostream> 
 
+#define POST_PROCESS 
+
 int main(int argc, char** argv){
 
 	LOG("Application Started . . .");
@@ -26,7 +28,7 @@ int main(int argc, char** argv){
 
 	auto texture = std::make_shared<neu::Texture>();
 
-	texture->CreateTexture(512, 512);
+	texture->CreateTexture(1024, 1024);
 
 	neu::g_resources.add<neu::Texture>("fb_texture", texture);
 
@@ -98,17 +100,27 @@ int main(int argc, char** argv){
 
 		auto material = neu::g_resources.Get<neu::Material>("materials/multi.mtrl");
 
-		auto program = neu::g_resources.Get<neu::Program>("shaders/Fx/refrac.prog");
+		auto program1 = neu::g_resources.Get<neu::Program>("shaders/Fx/refrac.prog");
 
-		if(program){ 
+		if(program1){ 
 
-			program->Use();
+			program1->Use();
 		
-			program->SetUniform("i", interpolation);
+			program1->SetUniform("i", interpolation);
 
-			program->SetUniform("ri", refractionIndex);
+			program1->SetUniform("ri", refractionIndex);
 		
 		}
+
+		//auto program = neu::g_resources.Get<neu::Program>("shaders/postprocess/postprocess.prog");
+		//
+		//if (program){
+
+		//	program->Use();
+		//	
+		//	program->SetUniform("offset", neu::g_time.time);
+		//
+		//}
 
 		ImGui::Begin("Transform");
 
@@ -121,6 +133,70 @@ int main(int argc, char** argv){
 		ImGui::End();
 
 		scene->Update();
+
+#ifdef POST_PROCESS 
+		
+		// don't draw post process actor when rendering to the framebuffer 
+		
+		{
+		
+			auto actor = scene->getActorFromName("PostProcess");
+			
+			if (actor){
+
+				actor->setActive(false);
+
+			}
+
+		}
+
+		// render pass 1 (render scene to framebuffer) 
+
+		neu::g_renderer.SetViewport(0, 0, framebuffer -> GetSize().x, framebuffer->GetSize().y);
+
+		framebuffer->Bind();
+		
+		neu::g_renderer.BeginFrame();
+		
+		scene->PreRender(neu::g_renderer);
+		
+		scene->Render(neu::g_renderer);
+		
+		framebuffer->Unbind();
+
+		// render pass 2 (render to screen) 
+		
+		neu::g_renderer.RestoreViewport();
+		
+		neu::g_renderer.BeginFrame();
+		
+		scene->PreRender(neu::g_renderer);
+
+		// draw only the post process actor to the screen 
+		
+		{
+		
+			auto actor = scene->getActorFromName("PostProcess");
+			
+			if (actor){
+
+				actor->setActive(true);
+				
+				actor->Draw(neu::g_renderer);
+			
+			}
+
+		}
+
+#else 
+
+		neu::g_renderer.BeginFrame();
+		
+		scene->PreRender(neu::g_renderer);
+		
+		scene->Render(neu::g_renderer);
+
+#endif // POST_PROCESS 
 
 		glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
 
@@ -135,10 +211,12 @@ int main(int argc, char** argv){
 
 		}
 
+
+
 		//render pass 1 to frame buffer
 
-		glViewport(0, 0, 512, 512);
-
+		neu::g_renderer.SetViewport(0, 0, framebuffer->GetSize().x, framebuffer->GetSize().y);
+		
 		framebuffer->Bind();
 
 		neu::g_renderer.BeginFrame();
@@ -162,7 +240,7 @@ int main(int argc, char** argv){
 
 		//render pass 2 to screen
 
-		glViewport(0, 0, 800, 600);
+		neu::g_renderer.RestoreViewport();
 
 		neu::g_renderer.BeginFrame();
 

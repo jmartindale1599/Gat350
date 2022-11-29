@@ -34,7 +34,7 @@ namespace neu {
 
 		void Shutdown();
 
-		void CreateWindow(const char* name, int width, int height, bool fullscreen);
+		void CreateWindow(const std::string& name, int width, int height, bool fullscreen = false);
 
 		void BeginFrame();
 
@@ -54,6 +54,10 @@ namespace neu {
 
 		void DrawPoint(const Vector2& v, const Color& color);
 
+		void SetViewport(int x, int y, int width, int height);
+
+		void RestoreViewport();
+
 		const glm::mat4& getView() { return m_view; }
 
 		void setView(const glm::mat4& view) { m_view = view; }
@@ -64,9 +68,9 @@ namespace neu {
 
 		void SetClearColor(const Color& color) { clear_color = glm::vec3(color.r, color.g, color.b); }
 
-		int GetWidth() { return m_width; }
+		int GetWidth() { return width; }
 
-		int GetHeight() { return m_height; }
+		int GetHeight() { return height; }
 
 		friend class Text;
 		
@@ -78,11 +82,13 @@ namespace neu {
 
 		glm::vec3 clear_color{ 0, 0, 0 };
 
+		int width = 800;
+
+		int height = 600;
+		
+		bool fullscreen = false;
+
 	private:
-
-		int m_width = 0;
-
-		int m_height = 0;
 
 		glm::mat4 m_view{ 1 };
 

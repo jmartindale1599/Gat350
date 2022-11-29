@@ -40,15 +40,29 @@ namespace neu{
 
 	}
 
-	void Renderer::CreateWindow(const char* name, int width, int height, bool fullscreen){
+	void Renderer::SetViewport(int x, int y, int width, int height){
 
-		m_width = width;
+		glViewport(x, y, width, height);
+	
+	}
 
-		m_height = height;
+	void Renderer::RestoreViewport(){
+
+		glViewport(0, 0, width, height);
+	
+	}
+
+	void Renderer::CreateWindow(const std::string& name, int width, int height, bool fullscreen){
+
+		this->width = width;
+
+		this->height = height;
+		
+		this->fullscreen = fullscreen;
 
 		int flags = (fullscreen) ? SDL_WINDOW_FULLSCREEN : (SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
-		m_window = SDL_CreateWindow(name, 100, 100, width, height, SDL_WINDOW_OPENGL | flags);
+		m_window = SDL_CreateWindow(name.c_str(), 100, 100, width, height, SDL_WINDOW_OPENGL |flags);
 
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 

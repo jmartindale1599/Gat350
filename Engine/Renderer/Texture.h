@@ -52,15 +52,15 @@ namespace neu{
 
 		GLuint m_texture = 0;
 
+		int m_width = 0;
+
+		int m_height = 0;
+
 	protected:
 
 		void FlipSurface(SDL_Surface* surface);
 
 		GLenum m_target = GL_TEXTURE_2D;
-
-		int m_width = 0;
-
-		int m_height = 0;
 
 	};
 

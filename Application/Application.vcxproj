@@ -146,6 +146,7 @@
     <None Include="..\Build\Assets\materials\box.mtrl" />
     <None Include="..\Build\Assets\materials\cow.mtrl" />
     <None Include="..\Build\Assets\materials\multi.mtrl" />
+    <None Include="..\Build\Assets\materials\postprocess.mtrl" />
     <None Include="..\Build\Assets\materials\reflection.mtrl" />
     <None Include="..\Build\Assets\materials\refrac.mtrl" />
     <None Include="..\Build\Assets\materials\refraf.mtrl" />
@@ -188,6 +189,9 @@
     <None Include="..\Build\Assets\shaders\Lit\texturePhong.frag" />
     <None Include="..\Build\Assets\shaders\Lit\texturePhong.prog" />
     <None Include="..\Build\Assets\shaders\Lit\texturePhong.vert" />
+    <None Include="..\Build\Assets\shaders\PostProcess\postprocess.frag" />
+    <None Include="..\Build\Assets\shaders\PostProcess\postprocess.prog" />
+    <None Include="..\Build\Assets\shaders\PostProcess\postprocess.vert" />
     <None Include="..\Build\Assets\shaders\Unlit\color.frag" />
     <None Include="..\Build\Assets\shaders\Unlit\color.prog" />
     <None Include="..\Build\Assets\shaders\Unlit\color.vert" />

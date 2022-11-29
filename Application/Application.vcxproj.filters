@@ -31,6 +31,9 @@
     <Filter Include="Resource Files\Shaders\Fx">
       <UniqueIdentifier>{5efe49c0-672e-4422-8cdf-69201c1ae781}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders\PostProcess">
+      <UniqueIdentifier>{5d798bd6-35c1-438e-9aae-24b627581cb8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -189,6 +192,18 @@
       <Filter>Resource Files\Scenes</Filter>
     </None>
     <None Include="..\Build\Assets\materials\RTT.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\PostProcess\postprocess.frag">
+      <Filter>Resource Files\Shaders\PostProcess</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\PostProcess\postprocess.prog">
+      <Filter>Resource Files\Shaders\PostProcess</Filter>
+    </None>
+    <None Include="..\Build\Assets\shaders\PostProcess\postprocess.vert">
+      <Filter>Resource Files\Shaders\PostProcess</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\postprocess.mtrl">
       <Filter>Resource Files\Materiels</Filter>
     </None>
   </ItemGroup>
