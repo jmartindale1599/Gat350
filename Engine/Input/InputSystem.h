@@ -36,6 +36,8 @@ namespace neu {
 
 		State GetKeyState(uint32_t key);
 
+		State GetButtonState(uint32_t key);
+
 		bool GetKeyDown(int key) { return m_keyboardState[key]; }
 
 		bool GetPrevKeyDown(uint32_t key) { return m_prevKeyboardState[key]; }

@@ -4,14 +4,16 @@ in vec2 texcoord;
   
 out vec4 fcolor; 
 
+const float THICC = .9;
+
 uniform sampler2D textureMap; 
   
 void main(){ 
 
- vec3 color = texture(textureMap, texcoord).rgb; 
-  
- // invert 
+ //ONLINE SCANLINE effect
 
- fcolor = vec4(1.0 - color, 1); 
+    vec3 color = texture(textureMap, texcoord).rgb;
+    
+    fcolor = vec4(color,1);
 
 } 

@@ -1,0 +1,19 @@
+{
+
+  "program": "shaders/Lit/texturePhong.prog",
+
+  "textures": [ "textures/takeout.jpg", "textures/takeout2.png" ],
+
+  "color": [
+
+    1,
+
+    1,
+
+    1
+
+  ],
+
+  "shininess": 64
+
+}

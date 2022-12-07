@@ -145,18 +145,26 @@
   <ItemGroup>
     <None Include="..\Build\Assets\materials\box.mtrl" />
     <None Include="..\Build\Assets\materials\cow.mtrl" />
+    <None Include="..\Build\Assets\materials\Desk.mtrl" />
+    <None Include="..\Build\Assets\materials\gun.mtrl" />
+    <None Include="..\Build\Assets\materials\money.mtrl" />
     <None Include="..\Build\Assets\materials\multi.mtrl" />
+    <None Include="..\Build\Assets\materials\perp.mtrl" />
     <None Include="..\Build\Assets\materials\postprocess.mtrl" />
     <None Include="..\Build\Assets\materials\reflection.mtrl" />
     <None Include="..\Build\Assets\materials\refrac.mtrl" />
     <None Include="..\Build\Assets\materials\refraf.mtrl" />
+    <None Include="..\Build\Assets\materials\room.mtrl" />
     <None Include="..\Build\Assets\materials\RTT.mtrl" />
     <None Include="..\Build\Assets\materials\scene.mtrl" />
     <None Include="..\Build\Assets\materials\Skull.mtrl" />
     <None Include="..\Build\Assets\materials\skybox.mtrl" />
+    <None Include="..\Build\Assets\materials\skyboxFinal.mtrl" />
+    <None Include="..\Build\Assets\materials\takeout.mtrl" />
     <None Include="..\Build\Assets\scenes\basic.scn" />
     <None Include="..\Build\Assets\scenes\basicLit.scn" />
     <None Include="..\Build\Assets\scenes\cubemap.scn" />
+    <None Include="..\Build\Assets\scenes\final.scn" />
     <None Include="..\Build\Assets\scenes\rtt.scn" />
     <None Include="..\Build\Assets\scenes\texture.scn" />
     <None Include="..\Build\Assets\shaders\basic.frag" />

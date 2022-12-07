@@ -19,7 +19,7 @@ namespace neu{
 
 		// get camera rotation
 
-		if (g_inputSystem.GetButtonDown(2) == InputSystem::State::Held){
+		if (g_inputSystem.GetButtonState(button_middle) == InputSystem::State::Held){
 
 			glm::vec2 axis = g_inputSystem.GetMouseRelative() * sensitivity;
 
@@ -47,13 +47,13 @@ namespace neu{
 
 		glm::vec3 direction{ 0 };
 
-		if (g_inputSystem.GetKeyState(key_a) == InputSystem::State::Held)	direction.x += 1;
+		if (g_inputSystem.GetKeyState(key_a) == InputSystem::State::Held)	direction.x -= 1;
 		
-		if (g_inputSystem.GetKeyState(key_d) == InputSystem::State::Held)	direction.x -= 1;
+		if (g_inputSystem.GetKeyState(key_d) == InputSystem::State::Held)	direction.x += 1;
 		
-		if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)	direction.y += 1;
+		if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)	direction.y -= 1;
 		
-		if (g_inputSystem.GetKeyState(key_s) == InputSystem::State::Held)	direction.y -= 1;
+		if (g_inputSystem.GetKeyState(key_s) == InputSystem::State::Held)	direction.y += 1;
 		
 		if (g_inputSystem.GetKeyState(key_space) == InputSystem::State::Held)   direction.z += 1;
 		

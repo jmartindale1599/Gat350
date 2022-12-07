@@ -206,5 +206,29 @@
     <None Include="..\Build\Assets\materials\postprocess.mtrl">
       <Filter>Resource Files\Materiels</Filter>
     </None>
+    <None Include="..\Build\Assets\scenes\final.scn">
+      <Filter>Resource Files\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\skyboxFinal.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\Desk.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\perp.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\takeout.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\money.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\gun.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
+    <None Include="..\Build\Assets\materials\room.mtrl">
+      <Filter>Resource Files\Materiels</Filter>
+    </None>
   </ItemGroup>
 </Project>

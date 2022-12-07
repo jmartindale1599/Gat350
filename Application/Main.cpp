@@ -44,7 +44,7 @@ int main(int argc, char** argv){
 
 	rapidjson::Document document;
 	
-	std::string workPlz = "scenes/rtt.scn";
+	std::string workPlz = "scenes/final.scn";
 
 	bool success = true; // neu::json::Load("scenes/basicLit.scn", document);
 	
@@ -106,9 +106,9 @@ int main(int argc, char** argv){
 
 			program1->Use();
 		
-			program1->SetUniform("i", interpolation);
+			//program1->SetUniform("i", interpolation);
 
-			program1->SetUniform("ri", refractionIndex);
+			//program1->SetUniform("ri", refractionIndex);
 		
 		}
 
